@@ -2,7 +2,7 @@ package com.productos.seguridad;
 
 import java.sql.*;
 
-import com.productos.datos.conection;
+import com.productos.datos.Conexion;
 
 public class EstadoCivil {
 	
@@ -10,14 +10,16 @@ public class EstadoCivil {
 	{
 		String estadoCivil="";
 		String sql="SELECT * FROM tb_estadocivil";
-		conection con = new conection();
+		Conexion con = new Conexion();
 		ResultSet rs=null;
 		try
 		{
 			rs=con.Consulta(sql);
-			while(rs.next())
-			{
-				estadoCivil+="<option value="+rs.getString(1)+">"+rs.getString(2)+"</option>";
+			if (rs != null) {
+				while(rs.next())
+				{
+					estadoCivil+="<option value="+rs.getString(1)+">"+rs.getString(2)+"</option>";
+				}
 			}
 		}
 		catch(SQLException e)

@@ -1,7 +1,8 @@
 package com.productos.seguridad;
 
 import java.sql.*;
-import com.productos.datos.conection;
+
+import com.productos.datos.Conexion;
 
 public class Perfil {
 	
@@ -9,14 +10,16 @@ public class Perfil {
 	{
 		String perfil="";
 		String sql="SELECT * FROM tb_perfil";
-		conection con = new conection ();
+		Conexion con = new Conexion();
 		ResultSet rs=null;
 		try
 		{
 			rs=con.Consulta(sql);
-			while(rs.next())
-			{
-				perfil+="<option value="+rs.getString(1)+">"+rs.getString(2)+"</option>";
+			if (rs != null) {
+				while(rs.next())
+				{
+					perfil+="<option value="+rs.getString(1)+">"+rs.getString(2)+"</option>";
+				}
 			}
 		}
 		catch(SQLException e)

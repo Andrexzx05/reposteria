@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" import="com.productos.negocio.*"%>
+	pageEncoding="UTF-8" import="com.productos.negocio.Producto" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,12 +19,9 @@
 	</nav>
 	<div>
 		<%
-		producto p = new producto();
+		Producto p = new Producto();
 		out.print(p.consultarTodo());
-		
 		%>
-
 	</div>
-
 </body>
 </html>

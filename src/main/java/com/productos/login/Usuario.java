@@ -1,9 +1,8 @@
 package com.productos.login;
 
+import com.productos.datos.Conexion;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-
-import com.productos.datos.conection;
 
 public class Usuario {
 
@@ -81,7 +80,7 @@ public class Usuario {
 		try
 		{
 			ResultSet rs;
-			conection clsCon=new conection();
+			Conexion clsCon=new Conexion();
 			rs=clsCon.Consulta(sentencia);
 			if(rs.next())
 			{
@@ -107,7 +106,7 @@ public class Usuario {
 	public String ingresarCliente()
 	{
 		String result="";
-		conection con=new conection();
+		Conexion con=new Conexion();
 		PreparedStatement pr=null;
 		String sql="INSERT INTO tb_usuario (id_per, id_est, nombre_us,"
 				+ "cedula_us,correo_us,clave_us) "
@@ -153,7 +152,7 @@ public class Usuario {
 	{
 		String result="";
 		Boolean respuesta=false;
-		conection con=new conection();
+		Conexion con=new Conexion();
 		PreparedStatement pr=null;
 		String sql="INSERT INTO tb_usuario (id_per, id_est, nombre_us,"
 				+ "cedula_us,correo_us,clave_us) "
@@ -199,7 +198,7 @@ public class Usuario {
 	public Boolean ingresarEmpleado(Integer nperfil, int nestado, String ncedula, String nnombre, String ncorreo) {
 		String result="";
 		Boolean respuesta=false;
-		conection con=new conection();
+		Conexion con=new Conexion();
 		PreparedStatement pr=null;
 		String sql="INSERT INTO tb_usuario (id_per, id_est, nombre_us,"
 				+ "cedula_us,correo_us,clave_us) "
@@ -250,7 +249,7 @@ public class Usuario {
 		try
 		{
 			ResultSet rs;
-			conection clsCon=new conection();
+			Conexion clsCon=new Conexion();
 			rs=clsCon.Consulta(sentencia);
 			if(rs.next())
 			{
@@ -293,7 +292,7 @@ public class Usuario {
 		try
 		{
 			ResultSet rs;
-			conection clsCon=new conection();
+			Conexion clsCon=new Conexion();
 			rs=clsCon.Consulta(sentencia);
 			if(rs.next())
 			{

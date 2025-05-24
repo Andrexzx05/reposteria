@@ -1,0 +1,35 @@
+@charset "UTF-8";
+
+/* Define CSS variables for the color palette */
+:root {
+    --color-principal: #4AD8CC;
+    --color-secondary: #FE015B;
+    --color-fondo: #F8FFF5;
+    --color-borde: #1C1646;
+    --color-text: #1C1646;
+    --color-text-alt: #FE015B;
+}
+
+.color-principal {
+    background-color: var(--color-principal);
+}
+
+.color-secondary {
+    background-color: var(--color-secondary);
+}
+
+.color-fondo {
+    background-color: var(--color-fondo);
+}
+
+.color-borde {
+    border-color: var(--color-borde);
+}
+
+.color-text {
+    color: var(--color-text);
+}
+
+.color-text-alt {
+    color: var(--color-text-alt);
+}

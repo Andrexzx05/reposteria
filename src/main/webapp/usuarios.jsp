@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" import="com.productos.seguridad.*"%>
+	pageEncoding="UTF-8" import="com.productos.seguridad.Perfil, com.productos.seguridad.EstadoCivil" %>
 
 <%
 String usuario;
@@ -12,133 +12,107 @@ if (sesion.getAttribute("usuario") == null)
 </jsp:forward>
 <%
 } else {
-%>
-
-<%
-usuario = (String) sesion.getAttribute("usuario"); //Se devuelve los valores de atributos
-int perfil = (Integer) sesion.getAttribute("perfil");
+    usuario = (String) sesion.getAttribute("usuario");
+    int perfil = (Integer) sesion.getAttribute("perfil");
 %>
 
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<title>Code & cake</title>
-<link rel="stylesheet" href="css/style.css">
-
+    <meta charset="UTF-8">
+    <title>Code & Cake</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
-	<header>Code & Cake</header>
-	<nav>
-		<ul>
-			<li><a href="login.jsp">Login</a></li>
-			<li><a href="consulta.jsp">Ver Productos</a></li>
-			<li><a href="categoria.jsp">Buscar Categoria</a></li>
-			<li><a href="Registro.jsp">Registros</a></li>
-		</ul>
-		<aside>
-			<ul>
-				<%
-				Pagina pag = new Pagina();
-				String menu = pag.mostrarMenu(perfil);
-				out.print(menu);
-				%>
-			</ul>
-		</aside>
-	</nav>
-
-	<section class="opcion">
-		<h1>
-			Registro de usuarios (
-			<%
-		out.println(usuario);
-		%>
-			)
-		</h1>
-		<form action="validarLogin.jsp" method="post" class="card">
-		<table border="5" cellpadding="5" cellspacing="5">
-			<tr>
-				<td><label for="nombre">Nombre:</label></td>
-				<td><input type="text" id="nombre" name="nombre" required>
-				</td>
-			</tr>
-
-			<tr>
-				<td><label for="cedula">Cedula:</label></td>
-				<td><input type="text" id="cedula" name="cedula" required>
-				</td>
-			</tr>
-
-			<tr>
-				<td><label for="perfil">Perfil:</label></td>
-				<td><select id="perfil" name="perfil">
-						<%
-						Perfil per = new Perfil();
-						out.print(per.mostrarPerfil());
-						%>
-				</select></td>
-			</tr>
-
-			<tr>
-				<td><label for="estado_civil">Estado Civil:</label></td>
-				<td><select id="estado_civil" name="estado_civil">
-						<%
-						EstadoCivil estc = new EstadoCivil();
-						out.print(estc.mostrarEstadoCivil());
-						%>
-				</select></td>
-			</tr>
-			<tr>
-				<td><label for="correo">Correo:</label></td>
-				<td><input type="email" id="correo" name="correo" required>
-				</td>
-			</tr>
-			<tr>
-                <td><label for="contrasena">Contraseña:</label></td>
-                <td><label for="contrasena-default">654321</label></td>
-            </tr>
-			<tr>
-                <td><label for="estado">
+    <header>Code & Cake</header>
+    <nav>
+        <ul>
+            <li><a href="login.jsp">Login</a></li>
+            <li><a href="consulta.jsp">Ver Productos</a></li>
+            <li><a href="categoria.jsp">Buscar Categoria</a></li>
+            <li><a href="Registro.jsp">Registros</a></li>
+        </ul>
+        <aside>
+            <ul>
                 <%
-                	String estado = (String) sesion.getAttribute("estado");
-                		if (estado != null) {
-                		out.println(estado);
-                	}
+                Pagina pag = new Pagina();
+                String menu = pag.mostrarMenu(perfil);
+                out.print(menu);
                 %>
-                </label></td>
-            </tr>
+            </ul>
+        </aside>
+    </nav>
 
-			<tr>
-				<td><input type="reset" value="Cancelar"></td>
-				<td><input type="submit" value="Registrar"></td>
-			</tr>
+    <section class="opcion">
+        <h1>Registro de usuarios (<%= usuario %>)</h1>
+        <form action="validarLogin.jsp" method="post" class="card">
+            <table border="5" cellpadding="5" cellspacing="5">
+                <tr>
+                    <td><label for="nombre">Nombre:</label></td>
+                    <td><input type="text" id="nombre" name="nombre" required></td>
+                </tr>
+                <tr>
+                    <td><label for="cedula">Cedula:</label></td>
+                    <td><input type="text" id="cedula" name="cedula" required></td>
+                </tr>
+                <tr>
+                    <td><label for="perfil">Perfil:</label></td>
+                    <td>
+                        <select id="perfil" name="perfil">
+                            <%
+                            Perfil per = new Perfil();
+                            out.print(per.mostrarPerfil());
+                            %>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="estado_civil">Estado Civil:</label></td>
+                    <td>
+                        <select id="estado_civil" name="estado_civil">
+                            <%
+                            EstadoCivil estc = new EstadoCivil();
+                            out.print(estc.mostrarEstadoCivil());
+                            %>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="correo">Correo:</label></td>
+                    <td><input type="email" id="correo" name="correo" required></td>
+                </tr>
+                <tr>
+                    <td><label for="contrasena">Contraseña:</label></td>
+                    <td><label for="contrasena-default">654321</label></td>
+                </tr>
+                <tr>
+                    <td><label for="estado">
+                        <%
+                        String estado = (String) sesion.getAttribute("estado");
+                        if (estado != null) {
+                            out.println(estado);
+                        }
+                        %>
+                    </label></td>
+                </tr>
+                <tr>
+                    <td><input type="reset" value="Cancelar"></td>
+                    <td><input type="submit" value="Registrar"></td>
+                </tr>
+            </table>
+        </form>
+    </section>
 
-		</table>
-	</form>
-		<nav>
-			
-		</nav>
-	</section>
-
-	<footer>
-		<h3>Redes Sociales</h3>
-		<ul>
-			<li><a href="https://www.facebook.com" target="_blank"> <img
-					class="icono" src="imagenes/facebook.png" width="50" height="50"
-					alt="facebook">
-			</a></li>
-			<li><a href="https://www.instagram.com" target="_blank"> <img
-					class="icono" src="imagenes/instagram.png" width="50" height="50"
-					alt="instagram">
-			</a></li>
-			<li><a href="https://whatsapp.com" target="_blank"> <img
-					class="icono" src="imagenes/whatsapp.png" width="50" height="50"
-					alt="Whatsapp">
-			</a></li>
-		</ul>
-	</footer>
-	<script src="main.js"></script>
+    <footer>
+        <h3>Redes Sociales</h3>
+        <ul>
+            <li><a href="https://www.facebook.com" target="_blank"><img class="icono" src="imagenes/facebook.png" width="50" height="50" alt="facebook"></a></li>
+            <li><a href="https://www.instagram.com" target="_blank"><img class="icono" src="imagenes/instagram.png" width="50" height="50" alt="instagram"></a></li>
+            <li><a href="https://whatsapp.com" target="_blank"><img class="icono" src="imagenes/whatsapp.png" width="50" height="50" alt="Whatsapp"></a></li>
+        </ul>
+    </footer>
+    <script src="main.js"></script>
 </body>
 </html>
 

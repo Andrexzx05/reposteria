@@ -1,15 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"
-	import="com.productos.negocio.*, com.productos.seguridad.*"%>
-<%@page import="java.util.*" session="true"%>
-
-
+	pageEncoding="UTF-8" 
+	import="com.productos.seguridad.*, com.productos.negocio.Producto" %>
+	
 <!DOCTYPE html>
 <html lang="es">
 <head>
 	<meta charset="UTF-8">
 	<meta content="width=device-width, initial-scale=1" name="viewport" />
-	<title>Sesion - Code & Cake</title>
+	<title>Gestión de Productos - Code & Cake</title>
 	<script src="https://cdn.tailwindcss.com"></script>
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
 	<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&amp;display=swap" rel="stylesheet" />
@@ -52,41 +50,44 @@
 		</nav>
 	</header>
 	<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-6 mb-10">
-		<%
-		HttpSession sesion = request.getSession();
-		out.println("IdSesion: " + sesion.getId());
-
-		out.println("Creación: " + sesion.getCreationTime());
-		Date momento = new Date(sesion.getCreationTime());
-		out.println("<BR>Creación: " + momento);
-		%>
-		<%
-		Date acceso = new Date(sesion.getLastAccessedTime());
-		out.println("Último acceso: " + acceso + "<br>");
-		%>
-		<%
-		out.println("nueva: " + sesion.isNew());
-		%>
-
-		<%
-		int adivinar = 0;
-		if (request.getParameter("edad") != null) {
-			adivinar = Integer.parseInt(request.getParameter("edad"));
-			sesion.setAttribute("edad", adivinar);
-			int edad = (int) sesion.getAttribute("edad");
-			out.print(edad);
-			if (edad >= 15 && edad <= 24) {
-				sesion.setAttribute("etapa", "juventud");
-			} else
-				sesion.setAttribute("etapa", "aún no existe la categoría");
-		}
-		%>
-
-		<%
-		HttpSession Sesion = request.getSession();
-		out.println("Tu edad es " + sesion.getAttribute("edad"));
-		out.println(" estás en la etapa de " + sesion.getAttribute("etapa"));
-		%>
+		<h2 class="text-2xl font-bold mb-6">Gestión de Productos</h2>
+		<form action="Ingresar productos.jsp" method="get" class="mb-6">
+			<div class="mb-4">
+				<label for="nombre" class="block text-sm font-medium text-gray-700">Nombre</label>
+				<input type="text" id="nombre" name="txtNombre" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+			</div>
+			<div class="mb-4">
+				<label for="categoria" class="block text-sm font-medium text-gray-700">Categoría</label>
+				<select id="categoria" name="categoria" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+					<option selected>Escoja la categoría</option>
+					<option value="1">Utensilios de Pastelería</option>
+					<option value="2">Ingredientes Secos</option>
+					<option value="3">Decoraciones y Toppings</option>
+					<option value="4">Moldes y Bandejas</option>
+					<option value="5">Herramientas de Decoración</option>
+				</select>
+			</div>
+			<button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">Agregar Producto</button>
+		</form>
+		<table class="min-w-full divide-y divide-gray-200">
+			<thead class="bg-gray-50">
+				<tr>
+					<th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
+					<th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Producto</th>
+					<th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Categoría</th>
+					<th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Precio</th>
+					<th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Cantidad</th>
+					<th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actualizar</th>
+					<th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Eliminar</th>
+				</tr>
+			</thead>
+			<tbody class="bg-white divide-y divide-gray-200">
+				<%
+				Producto pr = new Producto();
+				out.print(pr.reporte());
+				%>
+			</tbody>
+		</table>
 	</main>
 	<footer class="color-secondary text-white">
 		<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 grid grid-cols-1 md:grid-cols-3 gap-8">

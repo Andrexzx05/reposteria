@@ -4,7 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import com.productos.datos.Conexion;
+import com.productos.datos.*;
 
 public class Usuario {
 
@@ -74,8 +74,9 @@ public class Usuario {
 
     public boolean verificarUsuario(String correo, String clave) {
         String query = "SELECT * FROM tb_usuario WHERE correo_us = ? AND clave_us = ?";
-        try (Conexion conexion = new Conexion();
-             PreparedStatement ps = conexion.getConexion().prepareStatement(query)) {
+        try {
+        	Conexion con = new Conexion();
+            PreparedStatement ps = con.getConexion().prepareStatement(query);
             ps.setString(1, correo);
             ps.setString(2, clave);
             try (ResultSet rs = ps.executeQuery()) {

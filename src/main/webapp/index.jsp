@@ -16,6 +16,7 @@
 	href="https://fonts.googleapis.com/css2?family=Great+Vibes&amp;display=swap"
 	rel="stylesheet" />
 <link rel="stylesheet" href="css/color.css" />
+<link rel="stylesheet" href="css/style.css" />
 <style>
 .font-gv {
 	font-family: 'Great Vibes', cursive;
@@ -46,20 +47,22 @@
 				</div>
 				<ul
 					class="hidden md:flex space-x-6 text-sm font-normal color-text">
-					<li><a class="nav-link" href="#"> INICIO </a></li>
-					<li><a class="nav-link" href="#"> TIENDA </a></li>
-					<li><a class="nav-link" href="#"> CATEGORIAS </a></li>
+					<li><a class="nav-link" href="index.jsp"> INICIO </a></li>
+					<li><a class="nav-link" href="products.jsp"> TIENDA </a></li>
+					<li><a class="nav-link" href="categoria.jsp"> CATEGORIAS </a></li>
 				</ul>
 			</div>
 			<div class="flex items-center space-x-4 text-black text-sm">
 				<ul
 					class="hidden md:flex space-x-6 text-sm font-normal color-text">
-					<li><a class="nav-link flex items-center space-x-1" href="">
-							<span class=text-xs> Inciar Sesion </span>
-					</a></li>
-					<li><a class="nav-link flex items-center space-x-1" href="">
-							<span class="text-xs"> Registrarse </span>
-					</a></li>
+					<%
+					Pagina pag_nav = new Pagina();
+					HttpSession ses = request.getSession();
+					Object usr = ses.getAttribute("usuario");
+					boolean isLoggedIn = (usr != null);
+					int perfil = isLoggedIn ? (int) ses.getAttribute("perfil") : 0;
+					out.print(pag_nav.mostrarMenu(perfil, isLoggedIn));
+					%>
 				</ul>
 			</div>
 		</nav>

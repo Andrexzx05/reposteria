@@ -2,5 +2,5 @@
 <% 
 HttpSession sesionOk = request.getSession();
 sesionOk.invalidate();
-response.sendRedirect("login.jsp");
+response.sendRedirect("index.jsp");
 %>

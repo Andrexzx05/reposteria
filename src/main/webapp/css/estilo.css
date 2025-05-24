@@ -1,0 +1,111 @@
+@charset "UTF-8";
+
+#fondo_img {
+	background-image: url("src/imagenes/cupcakes.png");
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-attachment: fixed;
+	background-position: center;
+	height: 100%;
+	width: 100%;
+	z-index: -1;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+h1 {
+	color: #0d1b2a;
+	font-size: 2em;
+	font-weight: bold;
+	text-align: center;
+}
+
+#favorito {
+	border: 5px groove #99c;
+	color: #FFED66;
+}
+
+#menu {
+	background-color: #99c;
+	border: 1px solid #99c;
+	border-radius: 5px;
+	box-shadow: 0 0 5px #99c;
+	margin: 0 auto;
+	padding: 10px;
+	width: 50%;
+}
+
+#main-container {
+	background-size: cover;
+	background-color: #fff;
+	border: 1px solid #99c;
+	border-radius: 5px;
+	box-shadow: 0 0 5px #99c;
+	margin: 0 auto;
+	padding: 10px;
+	width: 100%;
+	align-items: center;
+}
+
+#mapa {
+	border: 1px solid #99c;
+    border-radius: 5px;
+    box-shadow: 0 0 5px #99c;
+    margin: 0 auto;
+    padding: 10px;
+    width: 50%;
+    min-height: 640px;
+}
+	
+
+body {
+	background-color: #f8e8d3; /* Color beige pastel */
+}
+
+h1 {
+	/* Estilos para el título principal */
+	
+}
+
+#main-container {
+	/* Estilos para el contenedor principal */
+	
+}
+
+footer {
+    text-align: center;
+    background-color: #f3f3f3;
+    padding: 20px 0;
+}
+
+footer h3 {
+    margin-bottom: 10px;
+    color: #333;
+    font-family: sans-serif;
+}
+
+footer ul {
+    list-style: none;          /* Quita los puntos de la lista */
+    padding: 0;
+    margin: 0;
+    display: flex;             /* Hace que los <li> estén en línea */
+    justify-content: center;  /* Centra los íconos horizontalmente */
+    gap: 20px;                 /* Espacio entre íconos */
+}
+
+footer li {
+    display: inline-block;
+}
+
+.icono {
+    width: 40px;
+    height: 40px;
+    transition: transform 0.3s ease;
+}
+
+.icono:hover {
+    transform: scale(1.2); /* Efecto agrandado */
+}
+
+

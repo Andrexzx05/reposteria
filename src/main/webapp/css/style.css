@@ -1,1 +1,35 @@
 @charset "UTF-8";
+
+/* Table styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 16px;
+    text-align: left;
+    border: 1px solid var(--color-borde);
+}
+
+table th, table td {
+    border: 1px solid var(--color-borde);
+    padding: 8px;
+}
+
+table th {
+    background-color: var(--color-principal);
+    color: var(--color-text);
+    font-weight: bold;
+}
+
+table tr:nth-child(even) {
+    background-color: var(--color-fondo);
+}
+
+table tr:nth-child(odd) {
+    background-color: #ffffff;
+}
+
+table tr:hover {
+    background-color: var(--color-secondary);
+    color: #ffffff;
+}

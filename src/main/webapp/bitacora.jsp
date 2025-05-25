@@ -16,6 +16,28 @@
 		.font-gv { font-family: 'Great Vibes', cursive; }
 		.nav-link:hover { color: var(--color-text-alt); }
 		.shadow-border { box-shadow: 0 4px 6px -1px var(--color-borde), 0 2px 4px -2px var(--color-borde); }
+		/* Table styles */
+		.audit-table {
+			width: 100%;
+			border-collapse: collapse;
+			margin-top: 20px;
+		}
+		.audit-table th, .audit-table td {
+			border: 1px solid #ddd;
+			padding: 8px;
+			text-align: left;
+		}
+		.audit-table th {
+			background-color: #f4f4f4;
+			color: #333;
+			font-weight: bold;
+		}
+		.audit-table tr:nth-child(even) {
+			background-color: #f9f9f9;
+		}
+		.audit-table tr:hover {
+			background-color: #f1f1f1;
+		}
 	</style>
 </head>
 <body class="color-fondo text-black">
@@ -49,7 +71,11 @@
 		</nav>
 	</header>
 	<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-6 mb-10">
-		<!-- Main content for bitácora -->
+		<h1 class="text-2xl font-bold mb-4">Bitácora</h1>
+		<%
+			Bitacora bitacora = new Bitacora();
+			out.print(bitacora.mostrarAuditoria());
+		%>
 	</main>
 	<footer class="color-secondary text-white">
 		<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 grid grid-cols-1 md:grid-cols-3 gap-8">

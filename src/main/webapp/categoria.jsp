@@ -57,7 +57,6 @@
 				%>
 				<input type="submit" value="Verificar" />
 			</form>
-			<h3>Productos</h3>
 			<%
 			String idCat = request.getParameter("cmbCategoria");
 			if (idCat != null) {

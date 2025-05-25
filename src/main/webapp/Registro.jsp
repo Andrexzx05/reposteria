@@ -52,58 +52,46 @@
 		<section>
 			<article>
 				<h3>Registro nuevo Cliente</h3>
-				<form action="Respuesta.jsp" method="post">
+				<% String error = (String) request.getAttribute("error"); %>
+				<% if (error != null) { %>
+					<div class="alert alert-danger"><%= error %></div>
+				<% } %>
+				<form action="validarRegistro.jsp" method="post">
 					<table border="1" cellpadding="5" cellspacing="5">
 						<tr>
 							<td>Nombre</td>
-							<td><input type="text" name="textNombre"></td>
+							<td><input type="text" name="nombre" required></td>
 						</tr>
 						<tr>
 							<td>Cédula</td>
-							<td><input type="number" name="textCedula" maxlength="10" /></td>
+							<td><input type="text" name="cedula" maxlength="10" required></td>
 						</tr>
 						<tr>
 							<td>Correo</td>
-							<td><input type="email" name="textCorreo" /></td>
+							<td><input type="email" name="correo" required></td>
 						</tr>
 						<tr>
 							<td>Contraseña</td>
-							<td><input type="password" name="textContraseña" maxlength="10" /></td>
+							<td><input type="password" name="contrasena" required></td>
+						</tr>
+						<tr>
+							<td>Repetir Contraseña</td>
+							<td><input type="password" name="repetirContrasena" required></td>
 						</tr>
 						<tr>
 							<td>Estado Civil</td>
 							<td>
-								<select name="cmbECivil">
-									<option value="Soltero">Soltero</option>
-									<option value="Casado">Casado</option>
-									<option value="Divorciado">Divorciado</option>
-									<option value="Viudo">Viudo</option>
+								<select name="estadoCivil" required>
+									<%
+									EstadoCivil estadoCivil = new EstadoCivil();
+									out.print(estadoCivil.mostrarEstadoCivil());
+									%>
 								</select>
 							</td>
 						</tr>
 						<tr>
-							<td>Lugar de residencia</td>
-							<td>
-								<input type="radio" name="rdResidencia" value="Sur" />Sur
-								<input type="radio" name="rdResidencia" value="Norte" />Norte
-								<input type="radio" name="rdResidencia" value="Centro" />Centro
-							</td>
-						</tr>
-						<tr>
-							<td>Foto</td>
-							<td><input type="file" name="fileFoto" accept=".jpg, .jpeg, .png" /></td>
-						</tr>
-						<tr>
-							<td>Mes y año de nacimiento</td>
-							<td><input type="month" name="fecha" /></td>
-						</tr>
-						<tr>
-							<td>Color favorito</td>
-							<td><input type="color" name="colorFavorito" value="#ff6b6b" style="cursor: pointer;" title="Selecciona tu color preferido"></td>
-						</tr>
-						<tr>
-							<td><input type="submit" name="btn_enviar" id="btn_enviar" value="Enviar Registro" /></td>
-							<td><input type="reset" /></td>
+							<td><input type="reset" value="Cancelar"></td>
+							<td><input type="submit" value="Registrar"></td>
 						</tr>
 					</table>
 				</form>

@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
- pageEncoding="ISO-8859-1" session="true" import="com.productos.seguridad.Usuario" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+ pageEncoding="UTF-8" session="true" import="com.productos.seguridad.Usuario" %>
  
 <%
 Usuario usuario = new Usuario();
@@ -13,6 +13,7 @@ if (respuesta) {
     // Establecer atributos de sesión
     sesion.setAttribute("usuario", usuario.getNombre());
     sesion.setAttribute("perfil", usuario.getPerfil());
+    sesion.setAttribute("correo", nlogin);
     response.sendRedirect("menu.jsp"); // Redirigir al menú principal
 } else {
 %>

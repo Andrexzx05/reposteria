@@ -13,6 +13,8 @@ if (sesion.getAttribute("usuario") == null) {
 } else {
     usuario = (String) sesion.getAttribute("usuario");
     int perfil = (Integer) sesion.getAttribute("perfil");
+    String mensaje = (String) request.getAttribute("mensaje");
+    String error = (String) request.getAttribute("error");
 %>
 <!DOCTYPE html>
 <html lang="es">
@@ -64,7 +66,13 @@ if (sesion.getAttribute("usuario") == null) {
 	<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-6 mb-10">
 		<section class="opcion">
 			<h1>Registro de usuarios (<%= usuario %>)</h1>
-			<form action="validarLogin.jsp" method="post" class="card">
+			<% if (mensaje != null) { %>
+				<div class="alert alert-success"><%= mensaje %></div>
+			<% } %>
+			<% if (error != null) { %>
+				<div class="alert alert-danger"><%= error %></div>
+			<% } %>
+			<form action="validarRegistro.jsp" method="post" class="card">
 				<table border="5" cellpadding="5" cellspacing="5">
 					<tr>
 						<td><label for="nombre">Nombre:</label></td>
@@ -77,7 +85,7 @@ if (sesion.getAttribute("usuario") == null) {
 					<tr>
 						<td><label for="perfil">Perfil:</label></td>
 						<td>
-							<select id="perfil" name="perfil">
+							<select id="sperfil" name="sperfil">
 								<%
 								Perfil perf = new Perfil();
 								out.print(perf.mostrarPerfil());
@@ -88,7 +96,7 @@ if (sesion.getAttribute("usuario") == null) {
 					<tr>
 						<td><label for="estado_civil">Estado Civil:</label></td>
 						<td>
-							<select id="estado_civil" name="estado_civil">
+							<select id="estado_civil" name="estadoCivil">
 								<%
 								EstadoCivil estc = new EstadoCivil();
 								out.print(estc.mostrarEstadoCivil());
@@ -102,17 +110,11 @@ if (sesion.getAttribute("usuario") == null) {
 					</tr>
 					<tr>
 						<td><label for="contrasena">Contraseña:</label></td>
-						<td><label for="contrasena-default">654321</label></td>
+						<td><input type="password" id="contrasena" name="contrasena" required></td>
 					</tr>
 					<tr>
-						<td><label for="estado">
-							<%
-							String estado = (String) sesion.getAttribute("estado");
-							if (estado != null) {
-								out.println(estado);
-							}
-							%>
-						</label></td>
+						<td><label for="repetirContrasena">Repetir Contraseña:</label></td>
+						<td><input type="password" id="repetirContrasena" name="repetirContrasena" required></td>
 					</tr>
 					<tr>
 						<td><input type="reset" value="Cancelar"></td>

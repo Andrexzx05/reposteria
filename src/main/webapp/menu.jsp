@@ -15,6 +15,8 @@ if (sesion.getAttribute("usuario") == null) //Se verifica si existe la variable
 } else {
 	usuario = (String) sesion.getAttribute("usuario"); //Se devuelve los valores de atributos
 	int perfil = (Integer) sesion.getAttribute("perfil");
+	String mensaje = (String) request.getAttribute("mensaje");
+	String error = (String) request.getAttribute("error");
 %>
 
 <!DOCTYPE html>
@@ -67,6 +69,12 @@ if (sesion.getAttribute("usuario") == null) //Se verifica si existe la variable
 	<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-6 mb-10">
 		<section id="menu">
 			<h1>Bienvenido, <%= usuario %></h1>
+			<% if (mensaje != null) { %>
+				<div class="alert alert-success"><%= mensaje %></div>
+			<% } %>
+			<% if (error != null) { %>
+				<div class="alert alert-danger"><%= error %></div>
+			<% } %>
 		</section>
 	</main>
 	<footer class="color-secondary text-white">

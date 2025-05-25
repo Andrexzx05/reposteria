@@ -11,6 +11,8 @@ if (sesion.getAttribute("usuario") == null) {
 } else {
 	usuario = (String) sesion.getAttribute("usuario");
 	int perfil = (Integer) sesion.getAttribute("perfil");
+	String mensaje = (String) request.getAttribute("mensaje");
+	String error = (String) request.getAttribute("error");
 %>
 <!DOCTYPE html>
 <html lang="es">
@@ -62,30 +64,26 @@ if (sesion.getAttribute("usuario") == null) {
 	<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-6 mb-10">
 		<section class="opcion">
 			<h1>Cambio de clave (<%= usuario %>)</h1>
+			<% if (mensaje != null) { %>
+				<div class="alert alert-success"><%= mensaje %></div>
+			<% } %>
+			<% if (error != null) { %>
+				<div class="alert alert-danger"><%= error %></div>
+			<% } %>
 			<form action="validarCambioClave.jsp" method="post" class="card">
 				<table border="0" cellpadding="5" cellspacing="5">
 					<!-- Formulario -->
 					<tr>
-						<td><label for="contrasena">Contraseña actual:</label></td>
-						<td><input type="password" id="contrasena" name="contrasena" required></td>
+						<td><label for="claveActual">Contraseña actual:</label></td>
+						<td><input type="password" id="claveActual" name="claveActual" required></td>
 					</tr>
 					<tr>
-						<td><label for="nueva_contrasena">Nueva Contraseña:</label></td>
-						<td><input type="password" id="nueva_contrasena" name="nueva_contrasena" required></td>
+						<td><label for="nuevaClave">Nueva Contraseña:</label></td>
+						<td><input type="password" id="nuevaClave" name="nuevaClave" required></td>
 					</tr>
 					<tr>
-						<td><label for="confirmar_contrasena">Confirmar Nueva Contraseña:</label></td>
-						<td><input type="password" id="confirmar_contrasena" name="confirmar_contrasena" required></td>
-					</tr>
-					<tr>
-						<td><label for="estado">
-							<%
-							String estado = (String) sesion.getAttribute("estado");
-							if (estado != null) {
-								out.println(estado);
-							}
-							%>
-						</label></td>
+						<td><label for="repetirClave">Confirmar Nueva Contraseña:</label></td>
+						<td><input type="password" id="repetirClave" name="repetirClave" required></td>
 					</tr>
 					<!-- Boton de confirmar -->
 					<tr>

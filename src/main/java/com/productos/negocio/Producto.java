@@ -64,7 +64,7 @@ public class Producto {
 	{
 		String sql="SELECT id_pr, nombre_pr, descripcion_cat, cantidad_pr, precio_pr FROM tb_producto, tb_categoria WHERE tb_producto.id_cat=tb_categoria.id_cat ORDER BY id_pr";
 		Conexion con=new Conexion();
-		String tabla="<table class=\"tabla\"><th>ID</th><th>Producto</th><th>Categoria</th><th>Cantidad</th><th>Precio</th>";
+		String tabla="<table class=\"tabla\"><th>ID</th><th>Producto</th><th>Categoria</th><th>Cantidad</th><th>Precio</th><th>Modificar</th><th>Eliminar</th>";
 		ResultSet rs=null;
 		rs=con.Consulta(sql);
 		try {
@@ -105,6 +105,45 @@ public class Producto {
 		return resultado;
 		
 	}
+	
+	public Boolean modificarProducto(int id, String nombre, int cantidad, double precio, int cat) {
+	    // Preparar la sentencia SQL de actualización
+	    String sql = "UPDATE tb_producto SET nombre_pr = '" + nombre + 
+	                 "', cantidad_pr = " + cantidad + 
+	                 ", precio_pr = " + precio + 
+	                 ", id_cat = " + cat + 
+	                 " WHERE id_pr = " + id;
+
+	    Conexion con = new Conexion();
+	    boolean resultado = false;
+	    String error = con.Ejecutar(sql);  // Ejecutar el UPDATE
+
+	    if (error.equals("")) {
+	        resultado = true;  // Éxito
+	    } else {
+	        System.out.println("Error: " + error);
+	    }
+
+	    return resultado;
+	}
+	
+	public Boolean eliminarProducto(int id) {
+	    String sql = "DELETE FROM tb_producto WHERE id_pr = " + id;
+	    Conexion con = new Conexion();
+	    boolean resultado = false;
+
+	    String error = con.Ejecutar(sql);  // Ejecuta el DELETE
+
+	    if (error.equals("")) {
+	        resultado = true;  // Éxito
+	    } else {
+	        System.out.println("Error: " + error);
+	    }
+
+	    return resultado;
+	}
+
+
 
 	public String buscarProductoCategoria(int cat)
 	{
@@ -130,77 +169,5 @@ public class Producto {
 		return resultado;
 	}
 	
-	public String agregarOferta(int cat,  double precioOferta) {
-		String sentencia="UPDATE tb_producto SET estado = 1, valor = "+precioOferta+" WHERE id_cat = "+cat;
-		Conexion con=new Conexion();
-		String rs=null;
-
-		rs=con.Ejecutar(sentencia);
-		return rs;
-	}
 	
-	public String eliminarOferta(int cat) {
-		String sentencia="UPDATE tb_producto SET estado = 0 WHERE id_cat = "+cat;
-		Conexion con=new Conexion();
-		String rs=null;
-
-		rs=con.Ejecutar(sentencia);
-		return rs;
-	}
-	
-	public String consultarOfertas()
-	{
-		String sql="SELECT * FROM tb_producto WHERE estado = 1 ORDER BY id_pr";
-		Conexion con=new Conexion();
-		String tabla="<table class=\"tabla\"><th>ID</th><th>Producto</th><th>Cantidad</th><th>Precio</th><th>Precio Oferta</th>";
-		ResultSet rs=null;
-		rs=con.Consulta(sql);
-		try {
-			if(rs!=null) {
-				while(rs.next())
-				{
-					tabla+="<tr><td>"+rs.getInt(1)+"</td>"
-							+ "<td>"+rs.getString(3)+"</td>"
-							+ "<td>"+rs.getInt(4)+"</td>"
-							+ "<td>"+rs.getDouble(5)+"</td>"
-							+ "<td>"+rs.getDouble(8)+"</td>"
-							+ "</tr>";
-				}
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			System.out.print(e.getMessage());
-		}
-		tabla+="</table>";
-		return tabla;
-	}
-	
-	public String consultarSinOfertas(String linkModificar)
-	{
-		String sql="SELECT * FROM tb_producto WHERE estado = 0 ORDER BY id_pr";
-		Conexion con=new Conexion();
-		String tabla="<table class=\"tabla\"><th>ID</th><th>Producto</th><th>Cantidad</th><th>Precio</th>";
-		ResultSet rs=null;
-		rs=con.Consulta(sql);
-		try {
-			if(rs!=null) {
-				while(rs.next())
-				{
-					tabla+="<tr><td>"+rs.getInt(1)+"</td>"
-							+ "<td>"+rs.getString(3)+"</td>"
-							+ "<td>"+rs.getInt(4)+"</td>"
-							+ "<td>"+rs.getDouble(5)+"</td>"
-							+ "<td><a href="+linkModificar+"?id="+rs.getInt(1)+">Agregar Oferta</a></td>"
-							+ "</tr>";
-				}
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			System.out.print(e.getMessage());
-		}
-		tabla+="</table>";
-		return tabla;
-	}
 }

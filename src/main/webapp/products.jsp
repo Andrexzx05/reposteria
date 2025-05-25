@@ -7,7 +7,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta content="width=device-width, initial-scale=1" name="viewport" />
-	<title>Gestión de Productos - Code & Cake</title>
+	<title> Productos - Code & Cake</title>
 	<script src="https://cdn.tailwindcss.com"></script>
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
 	<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&amp;display=swap" rel="stylesheet" />
@@ -50,7 +50,7 @@
 		</nav>
 	</header>
 	<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-6 mb-10">
-		<h2 class="text-2xl font-bold mb-6">Gestión de Productos</h2>
+		<h2 class="text-2xl font-bold mb-6">Productos</h2>
 		<form action="Ingresar productos.jsp" method="get" class="mb-6">
 			<div class="mb-4">
 				<label for="nombre" class="block text-sm font-medium text-gray-700">Nombre</label>
@@ -67,20 +67,9 @@
 					<option value="5">Herramientas de Decoración</option>
 				</select>
 			</div>
-			<button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">Agregar Producto</button>
 		</form>
 		<table class="min-w-full divide-y divide-gray-200">
-			<thead class="bg-gray-50">
-				<tr>
-					<th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
-					<th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Producto</th>
-					<th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Categoría</th>
-					<th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Precio</th>
-					<th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Cantidad</th>
-					<th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actualizar</th>
-					<th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Eliminar</th>
-				</tr>
-			</thead>
+			
 			<tbody class="bg-white divide-y divide-gray-200">
 				<%
 				Producto pr = new Producto();

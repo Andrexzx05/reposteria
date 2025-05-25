@@ -24,14 +24,14 @@
 			<div class="flex items-center space-x-6">
 				<div class="flex justify-center md:justify-start">
 					<div class="text-center md:text-left">
-						<div class="text-xs tracking-widest mt-1 select-none color-text-alt">Code</div>
+						<div class="text-xl tracking-widest mt-1 select-none color-text-alt">Code</div>
 						<a href="#"><span class="font-gv text-4xl leading-none select-none color-text-alt">& Cake</span></a>
 					</div>
 				</div>
-				<ul class="hidden md:flex space-x-6 text-sm font-normal color-text">
-					<li><a class="nav-link" href="index.jsp">INICIO</a></li>
-					<li><a class="nav-link" href="products.jsp">TIENDA</a></li>
-					<li><a class="nav-link" href="categoria.jsp">CATEGORIAS</a></li>
+				<ul class="hidden md:flex space-x-10 text-3xl font-gv color-text relative right-[-40px] ">
+					<li><a class="nav-link" href="index.jsp"> Inicio </a></li>
+					<li><a class="nav-link" href="products.jsp"> Tienda </a></li>
+					<li><a class="nav-link" href="categoria.jsp"> Categorias </a></li>
 				</ul>
 			</div>
 			<div class="flex items-center space-x-4 text-black text-sm">
@@ -49,9 +49,9 @@
 		</nav>
 	</header>
 	<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-6 mb-10">
-		<section>
-			<article>
-				<h3>Iniciar Sesión</h3>
+  <section class="flex justify-center">
+    <article class="w-full max-w-md">
+      <h3 class="text-2xl font-bold mb-4">Iniciar Sesión</h3>
 				<% 
 				String error = request.getParameter("error");
 				if (error != null) { 
@@ -76,6 +76,8 @@
 			</article>
 		</section>
 	</main>
+	
+
 	<footer class="color-secondary text-white">
 		<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 grid grid-cols-1 md:grid-cols-3 gap-8">
 			<div class="flex justify-center md:justify-start">

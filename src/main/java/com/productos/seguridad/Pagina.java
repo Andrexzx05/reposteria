@@ -61,11 +61,11 @@ public class Pagina {
 			}
 		} else {
 			// User is not logged in
-			menu += "<li><a class=\"nav-link flex items-center space-x-1\" href=\"login.jsp\">"
-					+ "<span class=\"text-xs\"> Iniciar Sesion </span>"
+			menu += "<li><a class=\"nav-link flex items-center font-gv space-x-5\" href=\"login.jsp\">"
+					+ "<span class=\"text-3xl\"> Iniciar Sesion </span>"
 					+ "</a></li>";
-			menu += "<li><a class=\"nav-link flex items-center space-x-1\" href=\"Registro.jsp\">"
-					+ "<span class=\"text-xs\"> Registrarse </span>"
+			menu += "<li><a class=\"nav-link flex items-center font-gv space-x-1\" href=\"Registro.jsp\">"
+					+ "<span class=\"text-3xl \"> Registrarse </span>"
 					+ "</a></li>";
 		}
 

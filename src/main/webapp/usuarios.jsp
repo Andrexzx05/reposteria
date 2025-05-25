@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"
 	import="com.productos.negocio.*, com.productos.seguridad.*"%>
+<%@ page import="com.productos.seguridad.Usuario" %>
 <%
 String usuario;
 HttpSession sesion = request.getSession();
@@ -15,6 +16,17 @@ if (sesion.getAttribute("usuario") == null) {
     int perfil = (Integer) sesion.getAttribute("perfil");
     String mensaje = (String) request.getAttribute("mensaje");
     String error = (String) request.getAttribute("error");
+    String accion = request.getParameter("accion");
+    String idUsuario = request.getParameter("idUsuario");
+    if (accion != null && idUsuario != null) {
+        Usuario usuarioObj = new Usuario();
+        boolean resultado = usuarioObj.bloqueoUsuario(Integer.parseInt(idUsuario));
+        if (resultado) {
+            request.setAttribute("mensaje", "Acción realizada con éxito.");
+        } else {
+            request.setAttribute("error", "Error al realizar la acción.");
+        }
+    }
 %>
 <!DOCTYPE html>
 <html lang="es">
@@ -122,6 +134,16 @@ if (sesion.getAttribute("usuario") == null) {
 					</tr>
 				</table>
 			</form>
+			<%
+    Usuario usuarioObj = new Usuario();
+    String tablaUsuarios = usuarioObj.mostrarTablaUsuarios();
+    if (tablaUsuarios == null || tablaUsuarios.isEmpty()) {
+        out.println("<p>No se pudo cargar la tabla de usuarios. Verifique el método mostrarTablaUsuarios.</p>");
+    }
+%>
+<table border="1" cellpadding="5" cellspacing="5">
+    <%= tablaUsuarios %>
+</table>
 		</section>
 	</main>
 	<footer class="color-secondary text-white">

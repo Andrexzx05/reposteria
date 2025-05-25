@@ -41,7 +41,8 @@ CREATE TABLE public.tb_usuario (
     nombre_us TEXT NOT NULL,
     cedula_us TEXT UNIQUE NOT NULL,
     correo_us TEXT UNIQUE NOT NULL,
-    clave_us TEXT NOT NULL
+    clave_us TEXT NOT NULL,
+    bloqueo INTEGER DEFAULT 0
 );
 
 -- Crear tabla perfil-página para asignación de accesos

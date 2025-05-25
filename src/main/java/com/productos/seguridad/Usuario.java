@@ -72,7 +72,7 @@ public class Usuario {
     }
 
     public boolean verificarUsuario(String correo, String clave) {
-        String query = "SELECT * FROM tb_usuario WHERE correo_us = ? AND clave_us = ?";
+        String query = "SELECT * FROM tb_usuario WHERE correo_us = ? AND clave_us = ? AND bloqueo = 0";
         try {
             Conexion con = new Conexion();
             PreparedStatement ps = con.getConexion().prepareStatement(query);
@@ -89,6 +89,34 @@ public class Usuario {
             }
         } catch (SQLException e) {
             System.err.println("Error al verificar usuario: " + e.getMessage());
+        }
+        return false;
+    }
+
+    public boolean bloqueoUsuario(int id) {
+        String query = "SELECT bloqueo FROM tb_usuario WHERE id_us = ?";
+        try {
+            Conexion con = new Conexion();
+            PreparedStatement ps = con.getConexion().prepareStatement(query);
+            ps.setInt(1, id);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    if (rs.getInt("bloqueo") == 0) {
+                        String updateQuery = "UPDATE tb_usuario SET bloqueo = 1 WHERE id_us = ?";
+                        PreparedStatement psUpdate = con.getConexion().prepareStatement(updateQuery);
+                        psUpdate.setInt(1, id);
+                        psUpdate.executeUpdate();
+                    } else {
+                        String updateQuery = "UPDATE tb_usuario SET bloqueo = 0 WHERE id_us = ?";
+                        PreparedStatement psUpdate = con.getConexion().prepareStatement(updateQuery);
+                        psUpdate.setInt(1, id);
+                        psUpdate.executeUpdate();
+                    }
+                    return true;
+                }
+            }
+        } catch (SQLException e) {
+            System.err.println("Error al verificar bloqueo de usuario: " + e.getMessage());
         }
         return false;
     }
@@ -254,5 +282,60 @@ public class Usuario {
             System.out.println(ex.getMessage());
         }
         return respuesta;
+    }
+
+    public String mostrarTablaUsuarios() {
+        String tabla = "";
+        String sql = "SELECT u.id_us, p.descripcion_per, e.descripcion_est, u.cedula_us, u.nombre_us, u.correo_us, u.bloqueo " +
+                     "FROM tb_usuario u, tb_perfil p, tb_estadocivil e " +
+                     "WHERE u.id_per = p.id_per AND u.id_est = e.id_est " +
+                     "ORDER BY u.id_us";
+        Conexion con = new Conexion();
+        ResultSet rs = null;
+        tabla += "<tr>"
+                + "<th>Id</th>"
+                + "<th>Perfil</th>"
+                + "<th>Estado Civil</th>"
+                + "<th>Cedula</th>"
+                + "<th>Nombre</th>"
+                + "<th>Correo</th>"
+                + "<th>Estado</th>"
+                + "<th>Bloqueo</th>"
+                + "</tr>";
+        try {
+            rs = con.Consulta(sql);
+            while (rs != null && rs.next()) {
+                int id = rs.getInt(1);
+                int bloqueo = rs.getInt(7);
+                tabla += "<tr>"
+                        + "<td>" + id + "</td>"
+                        + "<td>" + rs.getString(2) + "</td>"
+                        + "<td>" + rs.getString(3) + "</td>"
+                        + "<td>" + rs.getString(4) + "</td>"
+                        + "<td>" + rs.getString(5) + "</td>"
+                        + "<td>" + rs.getString(6) + "</td>"
+                        + "<td>" + (bloqueo == 0 ? "Desbloqueado" : "Bloqueado") + "</td>"
+                        + "<td>"
+                        + "<form action='usuarios.jsp' method='post'>"
+                        + "<input type='hidden' name='idUsuario' value='" + id + "'/>"
+                        + "<input type='submit' name='accion' value='" + (bloqueo == 0 ? "Bloquear" : "Desbloquear") + "'/>"
+                        + "</form>"
+                        + "</td>"
+                        + "</tr>";
+            }
+        } catch (SQLException e) {
+            System.out.print("Error: " + e.getMessage());
+        } finally {
+            try {
+                if (rs != null) rs.close();
+                con.getConexion().close();
+            } catch (SQLException e) {
+                System.out.print("Error al cerrar recursos: " + e.getMessage());
+            }
+        }
+        if (tabla.isEmpty()) {
+            System.out.println("La tabla generada está vacía.");
+        }
+        return tabla;
     }
 }

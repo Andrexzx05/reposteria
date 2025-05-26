@@ -71,24 +71,7 @@
 
 		<form action="agregarProducto.jsp" method="post" class="card">
 			<table border="0" cellpadding="5" cellspacing="5">
-				<tr>
-					<td><label for="nombre">Nombre:</label></td>
-					<td><input type="text" id="nombre" name="txtNombre"
-						class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"></td>
-				</tr>
-				<tr>
-					<td><label for="categoria"
-						class="block text-sm font-medium text-gray-700">Categoría</label></td>
-					<td><select id="categoria" name="categoria"
-						class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-							<option selected>Escoja la categoría</option>
-							<option value="1">Utensilios de Pastelería</option>
-							<option value="2">Ingredientes Secos</option>
-							<option value="3">Decoraciones y Toppings</option>
-							<option value="4">Moldes y Bandejas</option>
-							<option value="5">Herramientas de Decoración</option>
-					</select></td>
-				</tr>
+				
 				<tr>
 					<td colspan="2"><input type="submit" value="Agregar Producto"></td>
 				</tr>

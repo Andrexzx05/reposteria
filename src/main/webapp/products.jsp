@@ -29,10 +29,10 @@
 						<a href="#"><span class="font-gv text-4xl leading-none select-none color-text-alt">& Cake</span></a>
 					</div>
 				</div>
-				<ul class="hidden md:flex space-x-6 text-sm font-normal color-text">
-					<li><a class="nav-link" href="index.jsp">INICIO</a></li>
-					<li><a class="nav-link" href="products.jsp">TIENDA</a></li>
-					<li><a class="nav-link" href="categoria.jsp">CATEGORIAS</a></li>
+				<ul class="hidden md:flex space-x-10 text-3xl font-gv color-text relative right-[-40px] ">
+					<li><a class="nav-link" href="index.jsp"> Inicio </a></li>
+					<li><a class="nav-link" href="products.jsp"> Tienda </a></li>
+					<li><a class="nav-link" href="categoria.jsp"> Categorias </a></li>
 				</ul>
 			</div>
 			<div class="flex items-center space-x-4 text-black text-sm">
@@ -50,24 +50,8 @@
 		</nav>
 	</header>
 	<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-6 mb-10">
-		<h2 class="text-2xl font-bold mb-6">Productos</h2>
-		<form action="Ingresar productos.jsp" method="get" class="mb-6">
-			<div class="mb-4">
-				<label for="nombre" class="block text-sm font-medium text-gray-700">Nombre</label>
-				<input type="text" id="nombre" name="txtNombre" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-			</div>
-			<div class="mb-4">
-				<label for="categoria" class="block text-sm font-medium text-gray-700">Categoría</label>
-				<select id="categoria" name="categoria" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-					<option selected>Escoja la categoría</option>
-					<option value="1">Utensilios de Pastelería</option>
-					<option value="2">Ingredientes Secos</option>
-					<option value="3">Decoraciones y Toppings</option>
-					<option value="4">Moldes y Bandejas</option>
-					<option value="5">Herramientas de Decoración</option>
-				</select>
-			</div>
-		</form>
+		<h2 class="hidden md:flex space-x-10 text-6xl font-bold font-gv color-text relative right-[-100px] ">Productos</h2>
+		
 		<table class="min-w-full divide-y divide-gray-200">
 			
 			<tbody class="bg-white divide-y divide-gray-200">

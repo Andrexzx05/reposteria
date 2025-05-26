@@ -89,11 +89,11 @@
         <!-- ID oculto (para saber qué producto modificar) -->
         <input type="hidden" name="id" value="<!-- aquí el ID del producto -->">
 
-        <label for="nombre">Producto:</label><br>
+        <label class="text-4xl font-gv color-text mb-4" for="nombre">Producto:</label><br>
         <input type="text" id="nombre" name="nombre" required><br><br>
 
-        <label for="categoria">Categoría</label><br>
-        <select id="categoria" name="categoria" required>
+        <label class="text-4xl font-gv color-text mb-4" for="categoria">Categoría</label><br>
+        <select class="text-2xl font-gv color-text mb-4"id="categoria" name="categoria" required>
             <option value="">Seleccionar categoría</option>
             <option value="1">Utensilios de Pastelería</option>
 			<option value="2">Ingredientes Secos</option>
@@ -102,10 +102,10 @@
 			<option value="5">Herramientas de Decoración</option>
         </select><br><br>
 
-        <label for="cantidad">Cantidad:</label><br>
+        <label class="text-4xl font-gv color-text mb-4" for="cantidad">Cantidad:</label><br>
         <input type="number" id="cantidad" name="cantidad" required><br><br>
 
-        <label for="precio">Precio:</label><br>
+        <label class="text-4xl font-gv color-text mb-4" for="precio">Precio:</label><br>
         <input type="number" id="precio" name="precio" step="0.01" required><br><br>
 
         <input type="submit" value="Agregar producto">
@@ -114,40 +114,32 @@
 	</main>
 	<!-- Footer -->
 	<footer class="color-secondary text-white">
-		<div
-			class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 grid grid-cols-1 md:grid-cols-3 gap-8">
+		<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 grid grid-cols-1 md:grid-cols-3 gap-8">
 			<div class="flex justify-center md:justify-start">
 				<div class="text-center md:text-left">
 					<div class="text-xs tracking-widest mt-1 select-none">Code</div>
-					<span class="font-gv text-4xl leading-none select-none"> & Cake </span>
+					<span class="font-gv text-4xl leading-none select-none">& Cake</span>
 				</div>
 			</div>
 			<div>
-				<h3 class="text-lg mb-4">Nuestro Taller</h3>
+				<h3 class=" text-4xl font-gv mb-4">Nuestro Taller</h3>
 				<hr class="border-t border-white/40 mb-4" />
 				<p class="text-xs max-w-xs">
-					<strong> Ubicación: </strong><br />
-					<iframe
-						src="https://www.google.com/maps/d/embed?mid=1ODEvsfH7n0A3V9agw0IZlv9eB2caPbc&ehbc=2E312F">
-					</iframe>
+					<strong>Ubicación:</strong><br />
+					<iframe src="https://www.google.com/maps/d/embed?mid=1ODEvsfH7n0A3V9agw0IZlv9eB2caPbc&ehbc=2E312F"></iframe>
 				</p>
 			</div>
 			<div>
-				<h3 class="text-lg mb-4">Visita nuestras redes sociales</h3>
+				<h3 class="text-4xl font-gv mb-4">Visita nuestras redes sociales</h3>
 				<hr class="border-t border-white/40 mb-4" />
 				<ul class="space-y-2 text-xs max-w-xs">
-					<li class="flex items-center space-x-2"><a href=""> <i
-							class="fab fa-facebook-f"> </i> <span> Facebook </span>
-					</a></li>
-					<li class="flex items-center space-x-2"><a href=""> <i
-							class="fab fa-instagram"> </i> <span> Instagram </span>
-					</a></li>
+					<li class="flex items-center space-x-2"><a href=""><i class="fab fa-facebook-f"></i><span class="text-2xl font-bold font-gv ">Facebook</span></a></li>
+					<li class="flex items-center space-x-2"><a href=""><i class="fab fa-instagram"></i><span class="text-2xl font-bold font-gv ">Instagram</span></a></li>
 				</ul>
 			</div>
 		</div>
-		<div
-			class="border-t border-white/40 py-3 text-xs max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center">
-			<span> Desarrollado por Andre Michelena </span>
+		<div class="border-t border-white/40 py-3 text-xs max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center">
+			<span>Desarrollado por Andre Michelena</span>
 		</div>
 	</footer>
 </body>

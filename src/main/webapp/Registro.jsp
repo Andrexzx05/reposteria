@@ -59,27 +59,27 @@
 				<form action="validarRegistro.jsp" method="post">
 					<table border="1" cellpadding="5" cellspacing="5">
 						<tr>
-							<td>Nombre</td>
+							<td><label class="text-4xl font-gv color-text mb-4" > Nombre: </label></td>
 							<td><input type="text" name="nombre" required></td>
 						</tr>
 						<tr>
-							<td>Cédula</td>
+							<td> <label class="text-4xl font-gv color-text mb-4" > Cédula </label></td>
 							<td><input type="text" name="cedula" maxlength="10" required></td>
 						</tr>
 						<tr>
-							<td>Correo</td>
+							<td> <label class="text-4xl font-gv color-text mb-4" > Correo </label></td>
 							<td><input type="email" name="correo" required></td>
 						</tr>
 						<tr>
-							<td>Contraseña</td>
+							<td> <label class="text-4xl font-gv color-text mb-4" > Contraseña </label></td>
 							<td><input type="password" name="contrasena" required></td>
 						</tr>
 						<tr>
-							<td>Repetir Contraseña</td>
+							<td> <label class="text-4xl font-gv color-text mb-4" > Repetir Contraseña </label></td>
 							<td><input type="password" name="repetirContrasena" required></td>
 						</tr>
 						<tr>
-							<td>Estado Civil</td>
+							<td><label class="text-4xl font-gv color-text mb-4" for="correo"> Estado Civil </label></td>
 							<td>
 								<select name="estadoCivil" required>
 									<%
@@ -107,7 +107,7 @@
 				</div>
 			</div>
 			<div>
-				<h3 class="text-4xl font-bold font-gv color-text">Nuestro Taller</h3>
+				<h3 class="text-4xl font-gv mb-4">Nuestro Taller</h3>
 				<hr class="border-t border-white/40 mb-4" />
 				<p class="text-xs max-w-xs">
 					<strong>Ubicación:</strong><br />
@@ -115,7 +115,7 @@
 				</p>
 			</div>
 			<div>
-				<h3 class="text-4xl font-bold font-gv color-text">Visita nuestras redes sociales</h3>
+				<h3 class="text-4xl font-gv mb-4">Visita nuestras redes sociales</h3>
 				<hr class="border-t border-white/40 mb-4" />
 				<ul class="space-y-2 text-xs max-w-xs">
 					<li class="flex items-center space-x-2"><a href=""><i class="fab fa-facebook-f"></i><span class="text-2xl font-bold font-gv ">Facebook</span></a></li>

@@ -5,7 +5,7 @@
 <head>
 <meta charset="utf-8" />
 <meta content="width=device-width, initial-scale=1" name="viewport" />
-<title>Code & Cake</title>
+<title>Modificar producto-Code & Cake</title>
 <script src="https://cdn.tailwindcss.com">
 	
 </script>

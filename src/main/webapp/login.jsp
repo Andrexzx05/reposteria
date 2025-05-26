@@ -51,7 +51,7 @@
 	<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-6 mb-10">
   <section class="flex justify-center">
     <article class="w-full max-w-md">
-      <h3 class="text-2xl font-bold mb-4">Iniciar Sesión</h3>
+      <h3 class="text-4xl font-bold font-gv color-text mb-4">Iniciar Sesión</h3>
 				<% 
 				String error = request.getParameter("error");
 				if (error != null) { 
@@ -61,11 +61,11 @@
 				<form action="validarLogin.jsp" method="post" class="card">
 					<table border="0" cellpadding="5" cellspacing="5">
 						<tr>
-							<td><label for="correo">Correo:</label></td>
+							<td><label class="text-4xl font-gv color-text mb-4" for="correo">Correo:</label></td>
 							<td><input type="email" id="correo" name="correo" required></td>
 						</tr>
 						<tr>
-							<td><label for="contraseña">Contraseña:</label></td>
+							<td><label class="text-4xl font-gv color-text mb-4" for="contraseña">Contraseña:</label></td>
 							<td><input type="password" id="contrasena" name="contrasena" required></td>
 						</tr>
 						<tr>
@@ -87,7 +87,7 @@
 				</div>
 			</div>
 			<div>
-				<h3 class="text-lg mb-4">Nuestro Taller</h3>
+				<h3 class=" text-4xl font-gv mb-4">Nuestro Taller</h3>
 				<hr class="border-t border-white/40 mb-4" />
 				<p class="text-xs max-w-xs">
 					<strong>Ubicación:</strong><br />
@@ -95,11 +95,11 @@
 				</p>
 			</div>
 			<div>
-				<h3 class="text-lg mb-4">Visita nuestras redes sociales</h3>
+				<h3 class="text-4xl font-gv mb-4">Visita nuestras redes sociales</h3>
 				<hr class="border-t border-white/40 mb-4" />
 				<ul class="space-y-2 text-xs max-w-xs">
-					<li class="flex items-center space-x-2"><a href=""><i class="fab fa-facebook-f"></i><span>Facebook</span></a></li>
-					<li class="flex items-center space-x-2"><a href=""><i class="fab fa-instagram"></i><span>Instagram</span></a></li>
+					<li class="flex items-center space-x-2"><a href=""><i class="fab fa-facebook-f"></i><span class="text-2xl font-bold font-gv ">Facebook</span></a></li>
+					<li class="flex items-center space-x-2"><a href=""><i class="fab fa-instagram"></i><span class="text-2xl font-bold font-gv ">Instagram</span></a></li>
 				</ul>
 			</div>
 		</div>

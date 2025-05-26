@@ -46,10 +46,10 @@ if (sesion.getAttribute("usuario") == null) //Se verifica si existe la variable
 						<a href="#"><span class="font-gv text-4xl leading-none select-none color-text-alt">& Cake</span></a>
 					</div>
 				</div>
-				<ul class="hidden md:flex space-x-6 text-sm font-normal color-text">
-					<li><a class="nav-link" href="index.jsp">INICIO</a></li>
-					<li><a class="nav-link" href="products.jsp">TIENDA</a></li>
-					<li><a class="nav-link" href="categoria.jsp">CATEGORIAS</a></li>
+				<ul class="hidden md:flex space-x-10 text-3xl font-gv color-text relative right-[-40px] ">
+					<li><a class="nav-link" href="index.jsp"> Inicio </a></li>
+					<li><a class="nav-link" href="products.jsp"> Tienda </a></li>
+					<li><a class="nav-link" href="categoria.jsp"> Categorias </a></li>
 				</ul>
 			</div>
 			<div class="flex items-center space-x-4 text-black text-sm">
@@ -86,7 +86,7 @@ if (sesion.getAttribute("usuario") == null) //Se verifica si existe la variable
 				</div>
 			</div>
 			<div>
-				<h3 class="text-lg mb-4">Nuestro Taller</h3>
+				<h3 class=" text-4xl font-gv mb-4">Nuestro Taller</h3>
 				<hr class="border-t border-white/40 mb-4" />
 				<p class="text-xs max-w-xs">
 					<strong>Ubicación:</strong><br />
@@ -94,11 +94,11 @@ if (sesion.getAttribute("usuario") == null) //Se verifica si existe la variable
 				</p>
 			</div>
 			<div>
-				<h3 class="text-lg mb-4">Visita nuestras redes sociales</h3>
+				<h3 class="text-4xl font-gv mb-4">Visita nuestras redes sociales</h3>
 				<hr class="border-t border-white/40 mb-4" />
 				<ul class="space-y-2 text-xs max-w-xs">
-					<li class="flex items-center space-x-2"><a href=""><i class="fab fa-facebook-f"></i><span>Facebook</span></a></li>
-					<li class="flex items-center space-x-2"><a href=""><i class="fab fa-instagram"></i><span>Instagram</span></a></li>
+					<li class="flex items-center space-x-2"><a href=""><i class="fab fa-facebook-f"></i><span class="text-2xl font-bold font-gv ">Facebook</span></a></li>
+					<li class="flex items-center space-x-2"><a href=""><i class="fab fa-instagram"></i><span class="text-2xl font-bold font-gv ">Instagram</span></a></li>
 				</ul>
 			</div>
 		</div>

@@ -76,8 +76,8 @@ public class Producto {
 							+ "<td>"+rs.getString(3)+"</td>"
 							+ "<td>"+rs.getInt(4)+"</td>"
 							+ "<td>"+rs.getDouble(5)+"</td>"
-							+ "<td><a href="+link_modificar+"?id="+rs.getInt(1)+">Modificar</a></td>"
-							+ "<td><a href="+link_eliminar+"?id="+rs.getInt(1)+">Eliminar</a></td>"
+							+ "<td><a href="+"modificarProducto.jsp"+"?id="+rs.getInt(1)+">Modificar</a></td>"
+							+ "<td><a href="+"eliminarProducto.jsp"+"?id="+rs.getInt(1)+">Eliminar</a></td>"
 							+ "</td></tr>";
 				}
 			}

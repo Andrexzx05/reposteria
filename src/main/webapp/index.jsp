@@ -117,7 +117,7 @@
 				</div>
 			</div>
 			<div>
-				<h3 class="text-4xl font-bold font-gv color-text ">Nuestro Taller</h3>
+				<h3 class="text-4xl font-gv mb-4">Nuestro Taller</h3>
 				<hr class="border-t border-white/40 mb-4" />
 				<p class="text-s max-w-xs">
 					<strong> Ubicación: </strong><br />
@@ -127,7 +127,7 @@
 				</p>
 			</div>
 			<div>
-				<h3 class="text-4xl font-bold font-gv color-text ">Visita nuestras redes sociales</h3>
+				<h3 class="text-4xl font-gv mb-4 ">Visita nuestras redes sociales</h3>
 				<hr class="border-t border-white/40 mb-4" />
 				<ul class="space-y-2 text-xl max-w-xs">
 					<li class="flex items-center space-x-2"><a href=""> <i

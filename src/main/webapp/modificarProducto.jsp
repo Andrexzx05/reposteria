@@ -69,54 +69,73 @@
 	</header>
 	
 		<%
-	 Producto negocio = new Producto(); 
-	// Captura los parámetros del formulario
-	int id = Integer.parseInt(request.getParameter("id"));
-	String producto = request.getParameter("producto");
-	int cantidad = Integer.parseInt(request.getParameter("cantidad"));
-	double precio = Double.parseDouble(request.getParameter("precio"));
-	int cat = Integer.parseInt(request.getParameter("categoria"));
-	
-	// Llama al método modificarProducto
-	boolean resultado = negocio.modificarProducto(id, producto, cantidad, precio, cat);
-	
-	if (resultado) {
-	    // Éxito en la modificación
-	    out.println("<p>Producto modificado correctamente.</p>");
-	} else {
-	    // Error en la modificación
-	    out.println("<p>Error al modificar el producto.</p>");
+	 // Solo procesar la modificación si es POST y todos los parámetros existen
+	boolean mostrarFormulario = true;
+	if (request.getMethod().equalsIgnoreCase("POST") &&
+	    request.getParameter("id") != null &&
+	    request.getParameter("producto") != null &&
+	    request.getParameter("cantidad") != null &&
+	    request.getParameter("precio") != null &&
+	    request.getParameter("cmbCategoria") != null) {
+	    Producto negocio = new Producto();
+	    int id = Integer.parseInt(request.getParameter("id"));
+	    String producto = request.getParameter("producto");
+	    int cantidad = Integer.parseInt(request.getParameter("cantidad"));
+	    double precio = Double.parseDouble(request.getParameter("precio"));
+	    int cat = Integer.parseInt(request.getParameter("cmbCategoria"));
+	    boolean resultado = negocio.modificarProducto(id, producto, cantidad, precio, cat);
+	    mostrarFormulario = false;
+	    if (resultado) {
+	        out.println("<p class='text-green-700 font-bold text-xl my-4'>Producto modificado correctamente.</p>");
+	    } else {
+	        out.println("<p class='text-red-700 font-bold text-xl my-4'>Error al modificar el producto.</p>");
+	    }
 	}
 	%>
 	
 	<!-- Main -->
 	<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-6 mb-10">
-	<h2>Modificar Producto</h2>
-    <form action="modificarProducto.jsp" method="post">
-        
-        <label for="producto">Producto</label><br>
-        <input type="text" id="producto" name="producto" required><br><br>
-
-        <label for="categoria">Categoría</label><br>
-        <select id="categoria" name="categoria" required>
-            <option value="">Seleccionar categoría</option>
-            <option value="1">Utensilios de Pastelería</option>
-			<option value="2">Ingredientes Secos</option>
-			<option value="3">Decoraciones y Toppings</option>
-			<option value="4">Moldes y Bandejas</option>
-			<option value="5">Herramientas de Decoración</option>
-        </select><br><br>
-
-        <label for="cantidad">Cantidad</label><br>
-        <input type="number" id="cantidad" name="cantidad" min="0" required><br><br>
-
-        <label for="precio">Precio</label><br>
-        <input type="number" step="0.01" id="precio" name="precio" min="0" required><br><br>
-
-        <input type="submit" value="Modificar Producto">
-    </form>
-    
-    
+	<h2 class="text-3xl font-bold font-gv color-text mb-4">Modificar Producto</h2>
+	<% if (mostrarFormulario) {
+	    // Obtener datos actuales del producto para precargar el formulario
+	    int id = 0;
+	    String nombre = "";
+	    int cantidad = 0;
+	    double precio = 0.0;
+	    int cat = 0;
+	    if (request.getParameter("id") != null) {
+	        try {
+	            id = Integer.parseInt(request.getParameter("id"));
+	            Producto negocio = new Producto();
+	            java.sql.ResultSet rs = negocio.consultar(id);
+	            if (rs != null && rs.next()) {
+	                nombre = rs.getString("nombre_pr");
+	                cantidad = rs.getInt("cantidad_pr");
+	                precio = rs.getDouble("precio_pr");
+	                cat = rs.getInt("id_cat");
+	            }
+	        } catch(Exception ex) {}
+	    }
+	%>
+	<form action="modificarProducto.jsp" method="post" class="bg-white p-6 rounded shadow-border max-w-lg mx-auto">
+	    <input type="hidden" name="id" value="<%= id %>">
+	    <label for="producto" class="block font-bold mb-1">Producto</label>
+	    <input type="text" id="producto" name="producto" value="<%= nombre %>" required class="w-full mb-4 border rounded px-3 py-2">
+	    <label for="categoria" class="block font-bold mb-1">Categoría</label>
+	    <select id="categoria" name="cmbCategoria" required class="w-full mb-4 border rounded px-3 py-2">
+	        <%
+	        Categoria cate = new Categoria();
+	        out.print(cate.mostrarCategoria(cat));
+	        %>
+	    </select>
+	    <label for="cantidad" class="block font-bold mb-1">Cantidad</label>
+	    <input type="number" id="cantidad" name="cantidad" min="0" value="<%= cantidad %>" required class="w-full mb-4 border rounded px-3 py-2">
+	    <label for="precio" class="block font-bold mb-1">Precio</label>
+	    <input type="number" step="0.01" id="precio" name="precio" min="0" value="<%= precio %>" required class="w-full mb-4 border rounded px-3 py-2">
+	    <input type="submit" value="Modificar Producto" class="bg-color-borde hover:bg-color-secondary text-white font-bold py-2 px-6 rounded transition">
+	</form>
+	<% } %>
+		
 		
 	</main>
 	<!-- Footer -->

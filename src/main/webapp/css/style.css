@@ -85,5 +85,38 @@ table tr:hover {
     color: #ffffff;
 }
 
+/* Galería de productos */
+.galeria-productos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+.producto-card {
+    width: 200px;
+    border: 1px solid var(--color-borde);
+    border-radius: 0.5rem;
+    overflow: hidden;
+    box-shadow: 0 2px 8px var(--color-borde);
+    text-align: center;
+    background: var(--color-fondo, #fff);
+    transition: transform 0.2s cubic-bezier(.4,0,.2,1), box-shadow 0.2s;
+}
+.producto-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 24px var(--color-secondary, #6366f133);
+    border-color: var(--color-secondary);
+    z-index: 2;
+}
+.producto-card h3 {
+    margin: 0;
+    font-size: 1.1em;
+    color: var(--color-principal);
+    font-weight: 700;
+}
 
+.producto-card .precio-normal {
+    color: var(--color-principal);
+    font-weight: bold;
+}
 

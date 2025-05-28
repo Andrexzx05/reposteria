@@ -57,7 +57,7 @@
 			<tbody class="bg-white divide-y divide-gray-200">
 				<%
 				Producto pr = new Producto();
-				out.print(pr.reporte());
+				out.print(pr.galeriaProductos("verProducto.jsp"));
 				%>
 			</tbody>
 		</table>

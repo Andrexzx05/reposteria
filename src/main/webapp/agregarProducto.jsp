@@ -104,14 +104,10 @@
                 <label class="text-4xl font-gv color-text mb-4" for="categoria">Categoría:</label>
             </td>
             <td>
-                <select class="text-2xl font-gv color-text mb-4" id="categoria" name="categoria" required>
-                    <option value="">Seleccionar categoría</option>
-                    <option value="1">Utensilios de Pastelería</option>
-                    <option value="2">Ingredientes Secos</option>
-                    <option value="3">Decoraciones y Toppings</option>
-                    <option value="4">Moldes y Bandejas</option>
-                    <option value="5">Herramientas de Decoración</option>
-                </select>
+                    <%
+                    Categoria cat = new Categoria();
+                    out.print(cat.mostrarCategoria());
+                    %>
             </td>
         </tr>
         <tr>

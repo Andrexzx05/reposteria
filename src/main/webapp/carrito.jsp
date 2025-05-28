@@ -95,35 +95,85 @@ if (idParam != null && cantidadParam != null) {
     }
 }
 %>
-	<h2 class="text-4xl font-bold font-gv color-text mb-4">Carrito de compras</h2>
-	
-
-		<form action="pago.jsp" method="post" class="card">
+<h1 class="text-center text-3xl font-bold text-indigo-700">Carrito</h1>
+<%
+if (carrito.getItems().isEmpty()) {
+%>
+    <p class="text-center text-gray-700 mt-4">Tu carrito está vacío.</p>
+<%
+} else {
+%>
+    <div class="max-w-4xl mx-auto mt-8">
+        <table class="tabla">
+            <tr>
+                <th>Producto</th>
+                <th>Cantidad</th>
+                <th>Precio Unitario</th>
+                <th>Subtotal</th>
+                <th>Acción</th>
+            </tr>
+            <% for (Carrito.Item item : carrito.getItems()) { %>
+            <tr>
+                <td><%=item.getNombre()%></td>
+                <td><%=item.getCantidad()%></td>
+                <td>
+                    <% if (item.isEnOferta()) { %>
+                        <span class="text-pink-600 font-bold">$<%=item.getValorOferta()%></span>
+                    <% } else { %>
+                        <span>$<%=item.getPrecio()%></span>
+                    <% } %>
+                </td>
+                <td>
+                    <% if (item.isEnOferta()) { %>
+                        $<%=item.getValorOferta() * item.getCantidad()%>
+                    <% } else { %>
+                        $<%=item.getPrecio() * item.getCantidad()%>
+                    <% } %>
+                </td>
+                <td>
+                    <form action="carrito.jsp" method="post" style="display:inline;">
+                        <input type="hidden" name="eliminar" value="<%=item.getIdProducto()%>" />
+                        <button type="submit" class="bg-color-secondary hover:bg-color-borde text-white font-bold px-3 py-1 rounded transition">Eliminar</button>
+                    </form>
+                </td>
+            </tr>
+            <% } %>
+            <tr>
+				<td colspan="3" class="text-right font-bold color-text">Total:</td>
+                <td colspan="2" class="font-bold color-text-alt">$<%=carrito.getTotal()%></td>
+            </tr>
+        </table>
+		<form action="pago.jsp" method="post" class="card mt-4">
 			<table border="0" cellpadding="5" cellspacing="5">
-				
 				<tr>
-					<td colspan="2"><input type="submit" value="Pago"></td>
+					<td colspan="2"><input type="submit" value="Pago" class="bg-color-borde hover:bg-color-secondary text-white font-bold py-2 px-6 rounded transition"></td>
 				</tr>
 			</table>
 		</form>
-		
-	<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-        <!-- Ejemplo de producto 1 -->
-        <div class="shadow-border p-4">
-            <img src="ruta/a/tu/imagen1.jpg" alt="Producto 1" class="w-full h-auto">
-            <h3 class="text-lg mt-2">Nombre del Producto 1</h3>
-            <p class="text-sm">Descripción breve del producto 1.</p>
-            <p class="font-bold">$Precio</p>
-        </div>
-        <!-- Ejemplo de producto 2 -->
-        <div class="shadow-border p-4">
-            <img src="ruta/a/tu/imagen2.jpg" alt="Producto 2" class="w-full h-auto">
-            <h3 class="text-lg mt-2">Nombre del Producto 2</h3>
-            <p class="text-sm">Descripción breve del producto 2.</p>
-            <p class="font-bold">$Precio</p>
-        </div>
-        <!-- Agrega más productos aquí -->
+        <form action="carrito.jsp" method="post" class="mt-4 text-right">
+            <input type="hidden" name="limpiar" value="1" />
+            <button type="submit" class="bg-color-borde hover:bg-color-secondary text-white font-bold px-6 py-2 rounded transition">Vaciar carrito</button>
+        </form>
     </div>
+<%
+}
+// Eliminar producto
+String eliminar = request.getParameter("eliminar");
+if (eliminar != null) {
+    try {
+        int idEliminar = Integer.parseInt(eliminar);
+        carrito.eliminarProducto(idEliminar);
+        response.sendRedirect("carrito.jsp");
+        return;
+    } catch (Exception ex) {}
+}
+// Limpiar carrito
+if (request.getParameter("limpiar") != null) {
+    carrito.limpiar();
+    response.sendRedirect("carrito.jsp");
+    return;
+}
+%>
 		
 	</main>
 	<footer class="color-secondary text-white">

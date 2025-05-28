@@ -69,10 +69,33 @@
 	</header>
 	<!-- Main -->
 	<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-6 mb-10">
+	<%
+String idParam = request.getParameter("id");
+boolean mostrarMensaje = true;
+if (idParam != null) {
+    try {
+        int id = Integer.parseInt(idParam);
+        Producto negocio = new Producto();
+        boolean resultado = negocio.eliminarProducto(id);
+        if (resultado) {
+            out.println("<h3 class='text-4xl font-bold font-gv color-text mb-4'>Producto Eliminado correctamente</h3>");
+            // Redirigir tras 1.5 segundos
+            out.println("<script>setTimeout(function(){ window.location.href='gestProductos.jsp'; }, 1500);</script>");
+            mostrarMensaje = false;
+        } else {
+            out.println("<h3 class='text-4xl font-bold font-gv color-text mb-4'>Error al eliminar el producto</h3>");
+        }
+    } catch(Exception ex) {
+        out.println("<h3 class='text-4xl font-bold font-gv color-text mb-4'>Error al procesar la solicitud</h3>");
+    }
+} else {
+    out.println("<h3 class='text-4xl font-bold font-gv color-text mb-4'>No se especificó el producto a eliminar</h3>");
+}
+%>
+<% if (mostrarMensaje) { %>
+<h3 class="text-4xl font-bold font-gv color-text mb-4">Producto Eliminado</h3>
+<% } %>
 	
-	<h3 class="text-4xl font-bold font-gv color-text mb-4">Producto Eliminado</h3>
-    
-		
 	</main>
 	<!-- Footer -->
 	<footer class="color-secondary text-white">

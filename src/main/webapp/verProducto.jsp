@@ -1,22 +1,28 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"
-	import="com.productos.seguridad.*, com.productos.negocio.Producto"%>
-
-<!DOCTYPE html>
+	import="com.productos.negocio.*, com.productos.seguridad.*"%>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
+<meta charset="utf-8" />
 <meta content="width=device-width, initial-scale=1" name="viewport" />
-<title>Gestión de Productos - Code & Cake</title>
-<script src="https://cdn.tailwindcss.com"></script>
+<title>Code & Cake</title>
+<script src="https://cdn.tailwindcss.com">
+	
+</script>
 <link
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
 	rel="stylesheet" />
 <link
 	href="https://fonts.googleapis.com/css2?family=Great+Vibes&amp;display=swap"
 	rel="stylesheet" />
+<link 
+	href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap" 
+	rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="css/color.css" />
 <link rel="stylesheet" href="css/style.css" />
+
 <style>
 .font-gv {
 	font-family: 'Great Vibes', cursive;
@@ -33,17 +39,19 @@
 </style>
 </head>
 <body class="color-fondo text-black">
+	<!-- Header -->
 	<header class="border-b border-color-borde">
 		<nav
 			class="max-w-7xl mx-auto flex items-center justify-between px-4 sm:px-6 lg:px-8 h-20">
 			<div class="flex items-center space-x-6">
 				<div class="flex justify-center md:justify-start">
 					<div class="text-center md:text-left">
-						<div
-							class="text-xs tracking-widest mt-1 select-none color-text-alt">Code</div>
-						<a href="#"><span
-							class="font-gv text-4xl leading-none select-none color-text-alt">&
-								Cake</span></a>
+					<div class="text-xl tracking-widest orbitron mt-1 select-none">Code</div>
+						
+						<a href="#"> <span
+							class="font-gv text-4xl leading-none select-none color-text-alt">
+								& Cake </span>
+						</a>
 					</div>
 				</div>
 				<ul class="hidden md:flex space-x-10 text-3xl font-gv color-text relative right-[-40px] ">
@@ -66,29 +74,54 @@
 			</div>
 		</nav>
 	</header>
+	<!-- Main -->
 	<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-6 mb-10">
-		<h2 class="text-4xl font-bold font-gv color-text mb-4">Gestión de Productos</h2>
-
-		<form action="agregarProducto.jsp" method="post" class="card">
-			<table border="0" cellpadding="5" cellspacing="5">
-				
-				<tr>
-					<td colspan="2"><input type="submit" value="Agregar Producto"></td>
-				</tr>
-			</table>
-		</form>
-
-
-		<table class="min-w-full divide-y divide-gray-200">
-
-			<tbody class="bg-white divide-y divide-gray-200">
-				<%
-				Producto pr = new Producto();
-				out.print(pr.reporte("modificarProducto.jsp", "eliminarProducto.jsp"));
-				%>
-			</tbody>
-		</table>
+		
+		<%
+        String idParam = request.getParameter("id");
+        if (idParam != null) {
+            try {
+                int idProducto = Integer.parseInt(idParam);
+                Producto producto = new Producto();
+                java.sql.ResultSet rs = producto.consultar(idProducto);
+                if (rs != null && rs.next()) {
+                    String nombre = rs.getString("nombre_pr");
+                    int cantidad = rs.getInt("cantidad_pr");
+                    double precio = rs.getDouble("precio_pr");
+                    String imagen = producto.obtenerImagenProducto(idProducto);
+                    if (imagen == null || imagen.isEmpty()) {
+                        imagen = "imagenes/cupcakes.jpg";
+                    }
+        %>
+        <section class="flex flex-col md:flex-row items-center justify-center gap-8 mt-8">
+            <div class="shadow-border rounded-lg overflow-hidden w-full max-w-xs bg-white">
+                <img src="<%= imagen %>" alt="<%= nombre %>" class="w-full h-64 object-cover">
+            </div>
+            <div class="w-full max-w-lg bg-white p-8 rounded-lg shadow-border">
+                <h1 class="text-4xl font-bold font-gv color-text mb-4"><%= nombre %></h1>
+                <p class="text-xl mb-2">Stock disponible: <span class="font-bold"><%= cantidad %></span></p>
+                <p class="text-2xl mb-2">Precio: <span class="text-black font-bold">$<%= precio %></span></p>
+                <form action="carrito.jsp" method="post" class="mt-6 flex flex-col sm:flex-row items-center gap-4">
+                    <input type="hidden" name="id" value="<%= idProducto %>">
+                    <input type="number" name="cantidad" min="1" max="<%= cantidad %>" value="1" class="border rounded px-3 py-2 w-24" required>
+                    <button type="submit" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-6 rounded text-lg transition">Agregar al carrito</button>
+                </form>
+                <% if (request.getParameter("error") != null) { %>
+                    <div class="mt-4 text-red-600 font-bold"><%= request.getParameter("error") %></div>
+                <% } %>
+            </div>
+        </section>
+        <% } else { %>
+            <div class="text-center text-2xl text-red-600 font-bold mt-10">Producto no encontrado.</div>
+        <% }
+        } catch(Exception ex) { %>
+            <div class="text-center text-2xl text-red-600 font-bold mt-10">Error al cargar el producto.</div>
+        <% }
+        } else { %>
+            <div class="text-center text-2xl text-red-600 font-bold mt-10">No se especificó el producto.</div>
+        <% } %>
 	</main>
+	<!-- Footer -->
 	<footer class="color-secondary text-white">
 		<div
 			class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 grid grid-cols-1 md:grid-cols-3 gap-8">

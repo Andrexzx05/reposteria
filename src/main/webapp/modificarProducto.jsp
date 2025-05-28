@@ -67,6 +67,28 @@
 			</div>
 		</nav>
 	</header>
+	
+		<%
+	 Producto negocio = new Producto(); 
+	// Captura los parámetros del formulario
+	int id = Integer.parseInt(request.getParameter("id"));
+	String producto = request.getParameter("producto");
+	int cantidad = Integer.parseInt(request.getParameter("cantidad"));
+	double precio = Double.parseDouble(request.getParameter("precio"));
+	int cat = Integer.parseInt(request.getParameter("categoria"));
+	
+	// Llama al método modificarProducto
+	boolean resultado = negocio.modificarProducto(id, producto, cantidad, precio, cat);
+	
+	if (resultado) {
+	    // Éxito en la modificación
+	    out.println("<p>Producto modificado correctamente.</p>");
+	} else {
+	    // Error en la modificación
+	    out.println("<p>Error al modificar el producto.</p>");
+	}
+	%>
+	
 	<!-- Main -->
 	<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-6 mb-10">
 	<h2>Modificar Producto</h2>
@@ -93,6 +115,8 @@
 
         <input type="submit" value="Modificar Producto">
     </form>
+    
+    
 		
 	</main>
 	<!-- Footer -->
@@ -101,14 +125,15 @@
 			class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 grid grid-cols-1 md:grid-cols-3 gap-8">
 			<div class="flex justify-center md:justify-start">
 				<div class="text-center md:text-left">
-					<div class="text-xs tracking-widest mt-1 select-none">Code</div>
-					<span class="font-gv text-4xl leading-none select-none"> & Cake </span>
+					<div class="text-xl tracking-widest orbitron mt-1 select-none">Code</div>
+					<span class="font-gv text-4xl leading-none select-none"> &
+						Cake </span>
 				</div>
 			</div>
 			<div>
-				<h3 class="text-lg mb-4">Nuestro Taller</h3>
+				<h3 class="text-4xl font-gv mb-4">Nuestro Taller</h3>
 				<hr class="border-t border-white/40 mb-4" />
-				<p class="text-xs max-w-xs">
+				<p class="text-s max-w-xs">
 					<strong> Ubicación: </strong><br />
 					<iframe
 						src="https://www.google.com/maps/d/embed?mid=1ODEvsfH7n0A3V9agw0IZlv9eB2caPbc&ehbc=2E312F">
@@ -116,14 +141,17 @@
 				</p>
 			</div>
 			<div>
-				<h3 class="text-lg mb-4">Visita nuestras redes sociales</h3>
+				<h3 class="text-4xl font-gv mb-4 ">Visita nuestras redes sociales</h3>
 				<hr class="border-t border-white/40 mb-4" />
-				<ul class="space-y-2 text-xs max-w-xs">
-					<li class="flex items-center space-x-2"><a href=""> <i
-							class="fab fa-facebook-f"> </i> <span> Facebook </span>
+				<ul class="space-y-2 text-xl max-w-xs">
+					<li class="flex items-center space-x-2"><a href="https://www.facebook.com/profile.php?id=61576678326598"> <i
+							class="fab fa-facebook-f"> </i> <span class="text-2xl font-bold font-gv "> Facebook </span>
 					</a></li>
-					<li class="flex items-center space-x-2"><a href=""> <i
-							class="fab fa-instagram"> </i> <span> Instagram </span>
+					<li class="flex items-center space-x-2"><a href="https://www.instagram.com/cod3_cak3/"> <i
+							class="fab fa-instagram"> </i> <span class="text-2xl font-bold font-gv "> Instagram </span>
+					</a></li>
+					<li class="flex items-center space-x-2"><a href="https://www.linkedin.com/in/andré-michelena-andrade-74b4581b9/"> <i
+							class="fab fa-instagram"> </i> <span class="text-2xl font-bold font-gv "> LikedIn </span>
 					</a></li>
 				</ul>
 			</div>

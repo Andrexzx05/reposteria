@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"
-	import="com.productos.negocio.*, com.productos.seguridad.*"%>
+	import="com.productos.negocio.*, com.productos.seguridad.*, com.productos.carrito.*"%>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -28,10 +28,10 @@
 						<a href="#"><span class="font-gv text-4xl leading-none select-none color-text-alt">& Cake</span></a>
 					</div>
 				</div>
-				<ul class="hidden md:flex space-x-6 text-sm font-normal color-text">
-					<li><a class="nav-link" href="index.jsp">INICIO</a></li>
-					<li><a class="nav-link" href="products.jsp">TIENDA</a></li>
-					<li><a class="nav-link" href="categoria.jsp">CATEGORIAS</a></li>
+				<ul class="hidden md:flex space-x-10 text-3xl font-gv color-text relative right-[-40px] ">
+					<li><a class="nav-link" href="index.jsp"> Inicio </a></li>
+					<li><a class="nav-link" href="products.jsp"> Tienda </a></li>
+					<li><a class="nav-link" href="categoria.jsp"> Categorias </a></li>
 				</ul>
 			</div>
 			<div class="flex items-center space-x-4 text-black text-sm">
@@ -50,34 +50,121 @@
 	</header>
 	<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-6 mb-10">
 		<!-- Main content for carrito -->
+		
+	<%
+// Obtener o crear el carrito en sesión
+HttpSession sesion = request.getSession();
+Carrito carrito = (Carrito) sesion.getAttribute("carrito");
+if (carrito == null) {
+    carrito = new Carrito();
+    sesion.setAttribute("carrito", carrito);
+}
+// Si se envió un producto por POST, agregarlo al carrito
+String idParam = request.getParameter("id");
+String cantidadParam = request.getParameter("cantidad");
+if (idParam != null && cantidadParam != null) {
+    try {
+        int idProducto = Integer.parseInt(idParam);
+        int cantidad = Integer.parseInt(cantidadParam);
+        Producto prod = new Producto();
+        java.sql.ResultSet rs = prod.consultar(idProducto);
+        if (rs != null && rs.next()) {
+            int stock = rs.getInt("cantidad_pr");
+            // Buscar si ya está en el carrito y sumar la cantidad
+            int cantidadEnCarrito = 0;
+            for (Carrito.Item item : carrito.getItems()) {
+                if (item.getIdProducto() == idProducto) {
+                    cantidadEnCarrito = item.getCantidad();
+                    break;
+                }
+            }
+            if (cantidad + cantidadEnCarrito > stock) {
+                // Redireccionar a vistaProducto.jsp con mensaje de error
+                response.sendRedirect("vistaProducto.jsp?id=" + idProducto + "&error=La cantidad solicitada supera el stock disponible");
+                return;
+            }
+            String nombre = rs.getString("nombre_pr");
+            double precio = rs.getDouble("precio_pr");
+            int estado = rs.getInt("estado");
+            double valorOferta = rs.getDouble("valor");
+            boolean enOferta = (estado == 1);
+            carrito.agregarProducto(idProducto, nombre, cantidad, precio, valorOferta, enOferta);
+        }
+    } catch (Exception ex) {
+        // Manejo de error simple
+    }
+}
+%>
+	<h2 class="text-4xl font-bold font-gv color-text mb-4">Carrito de compras</h2>
+	
+
+		<form action="pago.jsp" method="post" class="card">
+			<table border="0" cellpadding="5" cellspacing="5">
+				
+				<tr>
+					<td colspan="2"><input type="submit" value="Pago"></td>
+				</tr>
+			</table>
+		</form>
+		
+	<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        <!-- Ejemplo de producto 1 -->
+        <div class="shadow-border p-4">
+            <img src="ruta/a/tu/imagen1.jpg" alt="Producto 1" class="w-full h-auto">
+            <h3 class="text-lg mt-2">Nombre del Producto 1</h3>
+            <p class="text-sm">Descripción breve del producto 1.</p>
+            <p class="font-bold">$Precio</p>
+        </div>
+        <!-- Ejemplo de producto 2 -->
+        <div class="shadow-border p-4">
+            <img src="ruta/a/tu/imagen2.jpg" alt="Producto 2" class="w-full h-auto">
+            <h3 class="text-lg mt-2">Nombre del Producto 2</h3>
+            <p class="text-sm">Descripción breve del producto 2.</p>
+            <p class="font-bold">$Precio</p>
+        </div>
+        <!-- Agrega más productos aquí -->
+    </div>
+		
 	</main>
 	<footer class="color-secondary text-white">
-		<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 grid grid-cols-1 md:grid-cols-3 gap-8">
+		<div
+			class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 grid grid-cols-1 md:grid-cols-3 gap-8">
 			<div class="flex justify-center md:justify-start">
 				<div class="text-center md:text-left">
-					<div class="text-xs tracking-widest mt-1 select-none">Code</div>
-					<span class="font-gv text-4xl leading-none select-none">& Cake</span>
+					<div class="text-xl tracking-widest orbitron mt-1 select-none">Code</div>
+					<span class="font-gv text-4xl leading-none select-none"> &
+						Cake </span>
 				</div>
 			</div>
 			<div>
-				<h3 class="text-lg mb-4">Nuestro Taller</h3>
+				<h3 class="text-4xl font-gv mb-4">Nuestro Taller</h3>
 				<hr class="border-t border-white/40 mb-4" />
-				<p class="text-xs max-w-xs">
-					<strong>Ubicación:</strong><br />
-					<iframe src="https://www.google.com/maps/d/embed?mid=1ODEvsfH7n0A3V9agw0IZlv9eB2caPbc&ehbc=2E312F"></iframe>
+				<p class="text-s max-w-xs">
+					<strong> Ubicación: </strong><br />
+					<iframe
+						src="https://www.google.com/maps/d/embed?mid=1ODEvsfH7n0A3V9agw0IZlv9eB2caPbc&ehbc=2E312F">
+					</iframe>
 				</p>
 			</div>
 			<div>
-				<h3 class="text-lg mb-4">Visita nuestras redes sociales</h3>
+				<h3 class="text-4xl font-gv mb-4 ">Visita nuestras redes sociales</h3>
 				<hr class="border-t border-white/40 mb-4" />
-				<ul class="space-y-2 text-xs max-w-xs">
-					<li class="flex items-center space-x-2"><a href=""><i class="fab fa-facebook-f"></i><span>Facebook</span></a></li>
-					<li class="flex items-center space-x-2"><a href=""><i class="fab fa-instagram"></i><span>Instagram</span></a></li>
+				<ul class="space-y-2 text-xl max-w-xs">
+					<li class="flex items-center space-x-2"><a href="https://www.facebook.com/profile.php?id=61576678326598"> <i
+							class="fab fa-facebook-f"> </i> <span class="text-2xl font-bold font-gv "> Facebook </span>
+					</a></li>
+					<li class="flex items-center space-x-2"><a href="https://www.instagram.com/cod3_cak3/"> <i
+							class="fab fa-instagram"> </i> <span class="text-2xl font-bold font-gv "> Instagram </span>
+					</a></li>
+					<li class="flex items-center space-x-2"><a href="https://www.linkedin.com/in/andré-michelena-andrade-74b4581b9/"> <i
+							class="fab fa-instagram"> </i> <span class="text-2xl font-bold font-gv "> LikedIn </span>
+					</a></li>
 				</ul>
 			</div>
 		</div>
-		<div class="border-t border-white/40 py-3 text-xs max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center">
-			<span>Desarrollado por Andre Michelena</span>
+		<div
+			class="border-t border-white/40 py-3 text-xs max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center">
+			<span> Desarrollado por Andre Michelena </span>
 		</div>
 	</footer>
 </body>

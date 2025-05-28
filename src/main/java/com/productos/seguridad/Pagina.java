@@ -10,31 +10,29 @@ import com.productos.datos.Conexion;
 public class Pagina {
 
 	
-	public String mostrarMenu(Integer nperfil)
-	{
-		String menu="";
-		String sql="SELECT * FROM tb_pagina pag, tb_perfil per, "
-				+ "tb_perfilpagina pper " +
-				"WHERE pag.id_pag=pper.id_pag AND pper.id_per=per.id_per "
-				+ "AND pper.id_per= "+nperfil;
-		Conexion con = new Conexion();
-		ResultSet rs=null;
-		try
-		{
-			rs=con.Consulta(sql);
-			if (rs != null) {
-				while(rs.next())
-				{
-					menu+="<li><a href="+rs.getString(3)+" >"+rs.getString(2)+"</a></li>";
-				}
-			}
-		}
-		catch(SQLException e)
-		{
-			System.out.print(e.getMessage());
-		}
-		return menu;
+
+	
+	public String mostrarMenu(Integer nperfil) {
+	    String menu = "";
+	    String sql = "SELECT * FROM tb_pagina pag, tb_perfil per, "
+	            + "tb_perfilpagina pper " +
+	            "WHERE pag.id_pag=pper.id_pag AND pper.id_per=per.id_per "
+	            + "AND pper.id_per= " + nperfil;
+	    Conexion con = new Conexion();
+	    ResultSet rs = null;
+	    try {
+	        rs = con.Consulta(sql);
+	        if (rs != null) {
+	            while (rs.next()) {
+	                menu += "<li><a href=\"" + rs.getString(3) + "\" class=\"font-gv\">" + rs.getString(2) + "</a></li>";
+	            }
+	        }
+	    } catch (SQLException e) {
+	        System.out.print(e.getMessage());
+	    }
+	    return menu;
 	}
+
 
 	public String mostrarMenu(Integer perfil, boolean isLoggedIn) {
 		String menu = "";
@@ -52,7 +50,7 @@ public class Pagina {
 				if (rs != null) {
 					while (rs.next()) {
 						menu += "<li><a class=\"nav-link flex items-center space-x-1\" href=" + rs.getString(3) + ">"
-								+ "<span class=\"text-xs\">" + rs.getString(2) + "</span>"
+								+ "<span class=\"text-xl\">" + rs.getString(2) + "</span>"
 								+ "</a></li>";
 					}
 				}

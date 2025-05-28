@@ -61,7 +61,7 @@
 				</ul>
 			</div>
 			<div class="flex items-center space-x-4 text-black text-sm">
-				<ul class="hidden md:flex space-x-6 text-sm font-normal color-text">
+				<ul class="hidden md:flex space-x-6 text-sm font-gv color-text">
 					<%
 					Pagina pag_nav = new Pagina();
 					HttpSession ses = request.getSession();
@@ -130,11 +130,14 @@
 				<h3 class="text-4xl font-gv mb-4 ">Visita nuestras redes sociales</h3>
 				<hr class="border-t border-white/40 mb-4" />
 				<ul class="space-y-2 text-xl max-w-xs">
-					<li class="flex items-center space-x-2"><a href=""> <i
+					<li class="flex items-center space-x-2"><a href="https://www.facebook.com/profile.php?id=61576678326598"> <i
 							class="fab fa-facebook-f"> </i> <span class="text-2xl font-bold font-gv "> Facebook </span>
 					</a></li>
-					<li class="flex items-center space-x-2"><a href=""> <i
+					<li class="flex items-center space-x-2"><a href="https://www.instagram.com/cod3_cak3/"> <i
 							class="fab fa-instagram"> </i> <span class="text-2xl font-bold font-gv "> Instagram </span>
+					</a></li>
+					<li class="flex items-center space-x-2"><a href="https://www.linkedin.com/in/andré-michelena-andrade-74b4581b9/"> <i
+							class="fab fa-instagram"> </i> <span class="text-2xl font-bold font-gv "> LikedIn </span>
 					</a></li>
 				</ul>
 			</div>

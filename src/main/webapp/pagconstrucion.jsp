@@ -52,32 +52,44 @@
 		<h1 class="text-2xl font-bold text-center">Página en Construcción</h1>
 	</main>
 	<footer class="color-secondary text-white">
-		<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 grid grid-cols-1 md:grid-cols-3 gap-8">
+		<div
+			class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 grid grid-cols-1 md:grid-cols-3 gap-8">
 			<div class="flex justify-center md:justify-start">
 				<div class="text-center md:text-left">
-					<div class="text-xs tracking-widest mt-1 select-none">Code</div>
-					<span class="font-gv text-4xl leading-none select-none">& Cake</span>
+					<div class="text-xl tracking-widest orbitron mt-1 select-none">Code</div>
+					<span class="font-gv text-4xl leading-none select-none"> &
+						Cake </span>
 				</div>
 			</div>
 			<div>
-				<h3 class="text-lg mb-4">Nuestro Taller</h3>
+				<h3 class="text-4xl font-gv mb-4">Nuestro Taller</h3>
 				<hr class="border-t border-white/40 mb-4" />
-				<p class="text-xs max-w-xs">
-					<strong>Ubicación:</strong><br />
-					<iframe src="https://www.google.com/maps/d/embed?mid=1ODEvsfH7n0A3V9agw0IZlv9eB2caPbc&ehbc=2E312F"></iframe>
+				<p class="text-s max-w-xs">
+					<strong> Ubicación: </strong><br />
+					<iframe
+						src="https://www.google.com/maps/d/embed?mid=1ODEvsfH7n0A3V9agw0IZlv9eB2caPbc&ehbc=2E312F">
+					</iframe>
 				</p>
 			</div>
 			<div>
-				<h3 class="text-lg mb-4">Visita nuestras redes sociales</h3>
+				<h3 class="text-4xl font-gv mb-4 ">Visita nuestras redes sociales</h3>
 				<hr class="border-t border-white/40 mb-4" />
-				<ul class="space-y-2 text-xs max-w-xs">
-					<li class="flex items-center space-x-2"><a href=""><i class="fab fa-facebook-f"></i><span>Facebook</span></a></li>
-					<li class="flex items-center space-x-2"><a href=""><i class="fab fa-instagram"></i><span>Instagram</span></a></li>
+				<ul class="space-y-2 text-xl max-w-xs">
+					<li class="flex items-center space-x-2"><a href="https://www.facebook.com/profile.php?id=61576678326598"> <i
+							class="fab fa-facebook-f"> </i> <span class="text-2xl font-bold font-gv "> Facebook </span>
+					</a></li>
+					<li class="flex items-center space-x-2"><a href="https://www.instagram.com/cod3_cak3/"> <i
+							class="fab fa-instagram"> </i> <span class="text-2xl font-bold font-gv "> Instagram </span>
+					</a></li>
+					<li class="flex items-center space-x-2"><a href="https://www.linkedin.com/in/andré-michelena-andrade-74b4581b9/"> <i
+							class="fab fa-instagram"> </i> <span class="text-2xl font-bold font-gv "> LikedIn </span>
+					</a></li>
 				</ul>
 			</div>
 		</div>
-		<div class="border-t border-white/40 py-3 text-xs max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center">
-			<span>Desarrollado por Andre Michelena</span>
+		<div
+			class="border-t border-white/40 py-3 text-xs max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center">
+			<span> Desarrollado por Andre Michelena </span>
 		</div>
 	</footer>
 </body>

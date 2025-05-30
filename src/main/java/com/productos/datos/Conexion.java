@@ -34,7 +34,7 @@ public class Conexion
 		
 		this.driver ="org.postgresql.Driver";
 		this.user="postgres";
-		this.pwd="1234";
+		this.pwd="ADMIN";
 		this.cadena="jdbc:postgresql://localhost:5432/bd_productos";
 		this.con=this.crearConexion();
 		
@@ -63,21 +63,19 @@ public class Conexion
 	}
 
 
-	public String Ejecutar(String sql)
-	{
-	String error="";
-	try
-	{
-	St=getConexion().createStatement();
-	St.execute(sql);
-	error="Datos insertados";
+	
+	
+	public String Ejecutar(String sql) {
+	    String error = "";
+	    try {
+	        St = getConexion().createStatement();
+	        St.execute(sql);
+	    } catch (Exception ex) {
+	        error = ex.getMessage();
+	    }
+	    return error;
 	}
-	catch(Exception ex)
-	{
-	error = ex.getMessage();
-	}
-	return(error);
-	}
+
 
 
 

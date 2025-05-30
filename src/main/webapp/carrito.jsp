@@ -95,11 +95,11 @@ if (idParam != null && cantidadParam != null) {
     }
 }
 %>
-<h1 class="text-center text-3xl font-bold text-indigo-700">Carrito</h1>
+<h1 class="font-gv text-4xl leading-none select-none color-text-alt">Este es su carrito</h1>
 <%
 if (carrito.getItems().isEmpty()) {
 %>
-    <p class="text-center text-gray-700 mt-4">Tu carrito está vacío.</p>
+    <p class="text-center font-gv text-4xl leading-none select-none color-text">Tu carrito está vacío.</p>
 <%
 } else {
 %>
@@ -118,7 +118,7 @@ if (carrito.getItems().isEmpty()) {
                 <td><%=item.getCantidad()%></td>
                 <td>
                     <% if (item.isEnOferta()) { %>
-                        <span class="text-pink-600 font-bold">$<%=item.getValorOferta()%></span>
+                        <span class="text-pink-600 font-gv">$<%=item.getValorOferta()%></span>
                     <% } else { %>
                         <span>$<%=item.getPrecio()%></span>
                     <% } %>
@@ -133,7 +133,7 @@ if (carrito.getItems().isEmpty()) {
                 <td>
                     <form action="carrito.jsp" method="post" style="display:inline;">
                         <input type="hidden" name="eliminar" value="<%=item.getIdProducto()%>" />
-                        <button type="submit" class="bg-color-secondary hover:bg-color-borde text-white font-bold px-3 py-1 rounded transition">Eliminar</button>
+                        <button type="submit" class="bg-color-secondary hover:bg-color-borde text-white font-gv px-3 py-1 rounded transition">Eliminar</button>
                     </form>
                 </td>
             </tr>
